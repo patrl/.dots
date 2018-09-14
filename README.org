@@ -4,6 +4,22 @@
 
 Dotfiles, primarily for NixOS, managed via ~stow~. My emacs config lives in [[http://github.com/patrl/.doom.d.git][a separate repo]].
 
+* wm
+
+** key chords
+
+- ~⌘ + ⏎~ :: terminal
+- ~⌘ + e~ :: emacs
+- ~⌘ + ⇧ + e~ :: emacs
+- ~⌘ + ␣~ :: launcher
+- ~⌘ + v~ :: neovim
+
+** bspwm
+
+- [[file:wm/.config/bspwm/bspwmrc][My bspwm config]].
+- [[file:wm/.config/sxhkd/sxhkdrc][My sxhkd config]]. Features tight integration with emacs.
+
+
 * System
 
 Symlink ~system/configuration.nix~ to ~/etc/nixos/configuration.nix~. Currently
@@ -18,12 +34,19 @@ Run ~stow -R shell~ to install dots for both ~zsh~ (my main shell), and ~fish~
 
 Some features:
 
- - Plugins are managed via [[github:zdharma/zplugin][zplugin]].
- - Fuzzy-finding via [[github:junegunn/fzf][fzf]].
+ - Plugins are managed via [[https://github.com/zdharma/zplugin.git][zplugin]].
+ - Fuzzy-finding via [[https://github.com/junegunn/fzf.git][fzf]].
  - Common unix utilities are aliased to faster rust-based alternatives:
    - [[https://github.com/ogham/exa.git][exa]] instead of ~ls~.
    - [[https://github.com/sharkdp/bat.git][bat]] instead of ~cat~.
    - [[https://github.com/BurntSushi/ripgrep.git][ripgrep]] instead of ~grep~.
    - [[https://github.com/sharkdp/fd.git][fd]] instead of ~fd~.
+
+** irc
+
+I use ~weechat~ as my irc client.
+
+- [[file:weechat/.weechat/weechat.conf][~weechat.conf~]] contains a beautified weechat config. Ugly ASCII is replaced by unicode.
+- [[file:weechat/.weechat/irc.conf][~irc.conf~]] contains my (probably less useful) irc settings.
 
 * TODO more info
