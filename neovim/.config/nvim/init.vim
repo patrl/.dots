@@ -234,7 +234,9 @@ Plug 'neomake/neomake'
 " }}}
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 "Plug '/run/current-system/sw/bin/fzf'
-Plug '/home/patrl/.zplugin/plugins/junegunn---fzf/plugin/fzf.vim'
+"Plug '/home/patrl/.zplugin/plugins/junegunn---fzf-bin'
+"Plug '/home/patrl/.zplugin/plugins/junegunn---fzf'
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 " {{{
 nnoremap <silent> <leader>bb :Buffers<CR>
