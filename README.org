@@ -4,7 +4,6 @@
 
 Dotfiles, primarily for NixOS, managed via ~stow~. My emacs config lives in [[http://github.com/patrl/.doom.d.git][a separate repo]].
 
-
 * System
 
 Symlink ~system/configuration.nix~ to ~/etc/nixos/configuration.nix~. Currently
@@ -26,6 +25,5 @@ Some features:
    - [[https://github.com/sharkdp/bat.git][bat]] instead of ~cat~.
    - [[https://github.com/BurntSushi/ripgrep.git][ripgrep]] instead of ~grep~.
    - [[https://github.com/sharkdp/fd.git][fd]] instead of ~fd~.
-
 
 * TODO more info
