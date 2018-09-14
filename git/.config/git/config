@@ -1,0 +1,35 @@
+[user]
+	name = Patrick Elliott
+	email = patrick.d.elliott@gmail.com
+	signingkey = 1B5E5824F4429D036C8A17517CA109C3974AF5FA
+[credential]
+	helper = cache --timeout=7200
+[github]
+	oauth-token = ecc06b341b3246660fb1c6426f60077e2cac5dd1
+	user = patrl
+[hub]
+	username = patrl
+	oauthtoken = c7548103c78c71200d0a314569ae0031371603f5
+[core]
+	excludesfiles = /home/patrl/.gitignore_global
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[commit]
+	gpgsign = true
+[rebase]
+	autostash = true
+[pull]
+	rebase = true
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse

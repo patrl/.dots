@@ -1,0 +1,6 @@
+[submodule "theme/.local/share/icons/la-capitaine-icon-theme"]
+	path = theme/.local/share/icons/la-capitaine-icon-theme
+	url = https://github.com/keeferrourke/la-capitaine-icon-theme.git
+[submodule "nix/.nixpkgs/overlays/nixpkgs-mozilla"]
+	path = nix/.nixpkgs/overlays/nixpkgs-mozilla
+	url = https://github.com/mozilla/nixpkgs-mozilla.git

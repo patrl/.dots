@@ -1,0 +1,9 @@
+Xcursor.size: 48
+Xcursor.theme: elementary
+Xft.dpi: 192
+rofi.font: Input Mono 30
+rofi.terminal: alacritty
+rofi.color-enabled: true
+rofi.separator-style: solid
+rofi.location: 0
+rofi.theme: base16-dracula.rasi

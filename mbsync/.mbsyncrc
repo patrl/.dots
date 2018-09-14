@@ -1,0 +1,97 @@
+Sync All            # set to Sync Pull during setup
+Expunge Both        # delete mail on both sides, set to Slave during setup
+
+IMAPAccount personal
+Host imap.gmail.com
+User patrick.d.elliott@gmail.com
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.password-store/google/patrick.d.elliott/mbsync.gpg"
+AuthMechs LOGIN
+SSLType IMAPS
+SSLVersion TLSv1.2
+
+IMAPAccount zas
+Host outlook.office365.com
+User elliott@leibniz-zas.de
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.password-store/zas/password.gpg"
+AuthMechs LOGIN
+SSLType IMAPS
+SSLVersion TLSv1.2
+
+IMAPStore personal-remote
+Account personal 
+
+IMAPStore zas-remote
+Account zas
+
+MaildirStore personal-local
+Path ~/.mail/personal/
+Inbox ~/.mail/personal/Inbox
+
+MaildirStore zas-local
+Path ~/.mail/zas/
+Inbox ~/.mail/zas/Inbox
+
+Channel personal-inbox
+Master :personal-remote:
+Slave :personal-local:
+Patterns "INBOX" 
+Create Slave
+Remove Slave
+SyncState *
+
+Channel personal-trash
+Master :personal-remote:"[Google Mail]/Bin"
+Slave :personal-local:trash
+Create Slave
+Remove Slave
+SyncState *
+
+Channel personal-sent
+Master :personal-remote:"[Google Mail]/Sent Mail"
+Slave :personal-local:sent
+Create Slave
+Remove Slave
+SyncState *
+
+Channel personal-archive
+Master :personal-remote:"[Google Mail]/All Mail"
+Slave :personal-local:archive
+Create Slave
+Remove Slave
+SyncState *
+
+Channel zas-trash
+Master :zas-remote:"Deleted Items"
+Slave :zas-local:trash
+Create Slave
+Remove Slave
+SyncState *
+
+Channel zas-inbox
+Master :zas-remote:
+Slave :zas-local:
+Patterns "INBOX"
+Create Slave
+Remove Slave
+SyncState *
+
+Channel zas-sent
+Master :zas-remote:"Sent Items"
+Slave :zas-local:sent
+Create Slave
+Remove Slave
+SyncState *
+
+Channel zas-archive
+Master :zas-remote:"Archive"
+Slave :zas-local:archive
+Create Slave
+Remove Slave
+SyncState *
+
+Channel zas-drafts
+Master :zas-remote:"Drafts"
+Slave :zas-local:drafts
+Create Slave
+Remove Slave
+SyncState *

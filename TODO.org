@@ -1,0 +1,14 @@
+#+TITLE: TODO
+
+* Misc
+
+** TODO push final commits to master and then delete [[file:~/dotfiles/][dotfile]] folder
+* Shell
+
+** TODO experiment more with ~fish~
+
+* Neovim
+
+** TODO replace ~nerd-commentor~ with ~vim-commentary~
+to match my evil set-up
+** TODO get ~fzf~ working properly

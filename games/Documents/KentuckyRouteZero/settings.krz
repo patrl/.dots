@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<settings>
+  <setting name="textSpeed" value="Steady" />
+  <setting name="volume" value="0.7" />
+  <setting name="cursorSensitivity" value="0.014" />
+  <setting name="invertMouse" value="False" />
+  <setting name="screenResolutionX" value="1920" />
+  <setting name="screenResolutionY" value="1080" />
+  <setting name="fullScreen" value="True" />
+  <setting name="console" value="False" />
+  <setting name="advancedAudioEffects" value="True" />
+  <setting name="speedyShadows" value="True" />
+  <setting name="vSyncCount" value="1" />
+  <setting name="hereAndThereCaptions" value="False" />
+  <setting name="enableGamepad" value="True" />
+  <setting name="enableRumble" value="True" />
+  <setting name="useKeyboardAsGamepad" value="False" />
+  <setting name="verboseLogging" value="True" />
+</settings>

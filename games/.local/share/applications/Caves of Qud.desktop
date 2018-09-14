@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Caves of Qud
+Comment=Play this game on Steam
+Exec='/home/patrl/.steam/steam/steamapps/common/Caves of Qud/CoQ.x86_64'
+Icon=steam_icon_333640
+Terminal=false
+Type=Application
+Categories=Game;
