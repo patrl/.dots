@@ -4,6 +4,7 @@
 
 Dotfiles, primarily for NixOS, managed via ~stow~. My emacs config lives in [[http://github.com/patrl/.doom.d.git][a separate repo]].
 
+
 * System
 
 Symlink ~system/configuration.nix~ to ~/etc/nixos/configuration.nix~. Currently
@@ -21,9 +22,10 @@ Some features:
  - Plugins are managed via [[github:zdharma/zplugin][zplugin]].
  - Fuzzy-finding via [[github:junegunn/fzf][fzf]].
  - Common unix utilities are aliased to faster rust-based alternatives:
-     - [[https://github.com/ogham/exa.git][exa]] instead of ~ls~.
-     - [[https://github.com/sharkdp/bat.git][bat]] instead of ~cat~.
-     - [[https://github.com/BurntSushi/ripgrep.git][ripgrep]] instead of ~grep~.
-     - [[https://github.com/sharkdp/fd.git][fd]] instead of ~fd~.
+   - [[https://github.com/ogham/exa.git][exa]] instead of ~ls~.
+   - [[https://github.com/sharkdp/bat.git][bat]] instead of ~cat~.
+   - [[https://github.com/BurntSushi/ripgrep.git][ripgrep]] instead of ~grep~.
+   - [[https://github.com/sharkdp/fd.git][fd]] instead of ~fd~.
+
 
 * TODO more info
