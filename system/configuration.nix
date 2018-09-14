@@ -10,7 +10,7 @@ in {
     ./bspwm.nix
     # ./mopidy.nix
     # ./xmonad.nix
-    # ./st.nix
+    ./st.nix
     ./zsh.nix
     ./fish.nix
     ./keybase.nix
