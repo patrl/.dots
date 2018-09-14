@@ -104,6 +104,7 @@ in {
     unstable.supercollider
     pamix
     feh
+    gnome3.gnome-screenshot
 
     # pdf
     evince
@@ -123,6 +124,7 @@ in {
     networkmanagerapplet
     udiskie
     python27Packages.websocket_client
+    unstable.neofetch
 
     # torrent
     (pkgs.transmission.override { enableGTK3 = true; })

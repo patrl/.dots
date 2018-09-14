@@ -1,5 +1,7 @@
 #+TITLE: README
 
+[[file:scrot.png]]
+
 Dotfiles, primarily for NixOS, managed via ~stow~. My emacs config lives in [[http://github.com/patrl/.doom.d.git][a separate repo]].
 
 * System
