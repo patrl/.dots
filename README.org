@@ -1,0 +1,27 @@
+#+TITLE: README
+
+Dotfiles, primarily for NixOS, managed via ~stow~. My emacs config lives in [[github:patrl/.doom.d][a separate repo]].
+
+* System
+
+Symlink ~system/configuration.nix~ to ~/etc/nixos/configuration.nix~. Currently
+rolling 18.09.
+
+* Shell
+
+Run ~stow -R shell~ to install dots for both ~zsh~ (my main shell), and ~fish~
+(for when I feel like messing around).
+
+** ~zsh~
+
+Some features:
+
+ - Plugins are managed via [[github:zdharma/zplugin][zplugin]].
+ - Fuzzy-finding via [[github:junegunn/fzf][fzf]].
+ - Common unix utilities are aliased to faster rust-based alternatives:
+     - [[github:ogham/exa][exa]] instead of ~ls~.
+     - [[github:sharkdp/bat][bat]] instead of ~cat~.
+     - [[github:BurntSushi/ripgrep][ripgrep]] instead of ~grep~.
+     - [[github:sharkdp/fd][fd]] instead of ~fd~.
+
+* TODO more info
