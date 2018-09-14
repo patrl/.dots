@@ -5,12 +5,16 @@
   environment.systemPackages = with pkgs; [
     (pkgs.st.override { patches = builtins.map fetchurl [
       {
-        url = "https://st.suckless.org/patches/scrollback/st-scrollback-0.7.diff";
-        sha256 = "f721b15a5aa8d77a4b6b44713131c5f55e7fca04006bc0a3cb140ed51c14cfb6";
+        url = "https://gist.github.com/patrl/3be6f35baf172064946b2fb06862c9b1/raw/f9d4cd9d4ca24e00b0128c51b61b7c4070682256/patrl-st-0.8.diff";
+        sha256 = "8e6efa33fe9bc9a5f43789a6139c3c54fc7730c9189e5ae91edb3d81b91b4ee9";
       }
       {
-        url= "https://st.suckless.org/patches/dracula/st-dracula-20170803-7f99032.diff";
-        sha256="4840b814dfa6c38f2aea87e622e1aaa255e411226907b50fb60623d2c70b01d4";
+        url = "https://st.suckless.org/patches/scrollback/st-scrollback-0.8.diff";
+        sha256 = "8279d347c70bc9b36f450ba15e1fd9ff62eedf49ce9258c35d7f1cfe38cca226";
+      }
+      {
+        url = "https://st.suckless.org/patches/scrollback/st-scrollback-mouse-0.8.diff";
+        sha256 = "3fb38940cc3bad3f9cd1e2a0796ebd0e48950a07860ecf8523a5afd0cd1b5a44";
       }
     ];
     })
