@@ -253,7 +253,7 @@ Plug 'scrooloose/nerdtree'
 map <C-n> :NERDTreeToggle<CR>
 " }}}
 "
-Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary'
 "
 " ====================================================================
 " Prose 
