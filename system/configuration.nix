@@ -108,7 +108,7 @@ in {
 
     # pdf
     evince
-    unstable.zathura
+    zathura
 
     # webcam
     guvcview
@@ -218,6 +218,8 @@ in {
     gtypist
     wget
 
+    zeal
+
   ];
 
   environment.etc = {
@@ -228,6 +230,12 @@ in {
     "gtk3.0/settings.ini".text = ''
       gtk-cursor-theme-name = Vanilla-DMZ
       gtk-cursor-theme-size = 48
+    '';
+    "geoclue/geoclue.conf".text = ''
+      [redshift]
+      allowed=true
+      system=false
+      users=
     '';
   };
 
@@ -260,7 +268,7 @@ in {
         ${pkgs.networkmanagerapplet}/bin/nm-applet &
         NIX_SKIP_KEYBASE_CHECKS=1 /run/current-system/sw/bin/keybase-gui &
         ${pkgs.udiskie}/bin/udiskie --s &
-        ${pkgs.feh}/bin/feh --bg-fill /home/patrl/Sync/Wallpapers/borneBestiary.jpg
+        ${pkgs.feh}/bin/feh --bg-max --randomize /home/patrl/Sync/Wallpapers/rotation/* &
       '';
     };
   };
@@ -312,10 +320,13 @@ in {
      "https://cache.nixos.org/"
      # binary cache for reflex-platform
      "https://nixcache.reflex-frp.org"
+     "https://hie-nix.cachix.org"
    ];
     binaryCachePublicKeys = [
       "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
+      "hie-nix.cachix.org-1:EjBSHzF6VmDnzqlldGXbi0RM3HdjfTU3yDRi9Pd0jTY="
     ];
+    trustedUsers =[ "root" "patrl" ];
   };
 
   # This value determines the NixOS release with which your system is to be
