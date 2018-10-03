@@ -8,6 +8,10 @@ in {
       unstable.biber
       (unstable.texlive.combine {
         inherit (unstable.texlive)
+         # classico
+         eulervm
+         newpx
+         kantlipsum
          ly1
          ifxetex
          qtree
