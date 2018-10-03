@@ -11,7 +11,6 @@ in {
     # haskell.packages.ghc802.ghc-mod
     haskellPackages.cabal-install
     haskellPackages.hlint
-    haskellPackages.hindent
     haskellPackages.hasktags
     haskellPackages.apply-refact
     haskellPackages.cabal2nix
