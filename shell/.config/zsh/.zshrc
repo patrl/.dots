@@ -52,6 +52,9 @@ export FZF_DEFAULT_OPTS='
 zplugin ice pick"prettyping" as"program"
 zplugin load denilsonsa/prettyping
 
+zplugin ice as"program" cp"src/capture.sh -> capture" pick"capture"
+zplugin load buhman/capture
+
 zplugin ice pick"async.zsh" src"pure.zsh"
 zplugin light sindresorhus/pure
 export PURE_PROMPT_SYMBOL="λ"
