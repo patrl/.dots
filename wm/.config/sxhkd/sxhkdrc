@@ -14,9 +14,6 @@ super + Return
 super + e
 	emacsclient -c
 
-# super + {_,shift + }Return
-	# alacritty -e 'tmux new-session -As patrl'
-
 super + {_,shift + }e
 	emacsclient -a '' -c -e '(+eshell/open-fullscreen ())'
 
