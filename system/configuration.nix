@@ -82,6 +82,7 @@ in {
 
     # dev
     unstable.rustup
+    unstable.racket
     unstable.carnix
     unstable.sbcl # common lisp
     unstable.leiningen # clojure
@@ -130,6 +131,7 @@ in {
     (pkgs.transmission.override { enableGTK3 = true; })
 
     # misc
+    gtk3-x11
     gnome3.dconf
     xlibs.xbacklight
     unstable.w3m
