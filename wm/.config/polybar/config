@@ -33,8 +33,8 @@ padding-right = 4
 module-margin-left = 2
 module-margin-right = 4
 
-; font-0 = "Input Mono:size=18:antialias=true;2"
-font-0 = "IBM Plex Mono:size=18:antialias=true;2"
+font-0 = "Input Mono:size=18:antialias=true;2"
+; font-0 = "IBM Plex Mono:size=18:antialias=true;2"
 font-1 = "FontAwesome:size=18:antialias=true;2"
 
 modules-left = bspwm
