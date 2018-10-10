@@ -163,7 +163,10 @@ in {
     # games
     retroarch
     brogue
-    unstable.dwarf-fortress-packages.dwarf-fortress-full
+    (pkgs.dwarf-fortress-packages.dwarf-fortress-full.override {
+      theme = "gemset";
+      enableIntro = false;
+    })
     unstable.crispyDoom
     unstable.love_11
 

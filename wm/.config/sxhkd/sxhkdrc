@@ -21,10 +21,10 @@ super + w
 	firefox
 
 super + b
-	 st -f "IBM Plex Mono:size=11:antialias=true:autohint=off" -c Ranger -e ranger
+	 st -f "Input Mono:size=11:antialias=true:autohint=off" -c Ranger -e ranger
 
 super + v
-	 st -f "IBM Plex Mono:size=11:antialias=true:autohint=off" -c Nvim -e nvim
+	 st -f "Input Mono:size=11:antialias=true:autohint=off" -c Nvim -e nvim
 
 super + p
 	rofi-pass
