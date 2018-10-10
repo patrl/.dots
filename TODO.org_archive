@@ -12,3 +12,31 @@ Archived entries from file /home/patrl/nixos-config/TODO.org
 :ARCHIVE_CATEGORY: TODO
 :ARCHIVE_TODO: DONE
 :END:
+
+* DONE push final commits to master and then delete [[file:~/dotfiles/][dotfile]] folder
+:PROPERTIES:
+:ARCHIVE_TIME: 2018-10-09 Tue 13:56
+:ARCHIVE_FILE: ~/.dots/TODO.org
+:ARCHIVE_OLPATH: Misc
+:ARCHIVE_CATEGORY: TODO
+:ARCHIVE_TODO: DONE
+:END:
+
+* DONE replace ~nerd-commentor~ with ~vim-commentary~
+:PROPERTIES:
+:ARCHIVE_TIME: 2018-10-09 Tue 13:56
+:ARCHIVE_FILE: ~/.dots/TODO.org
+:ARCHIVE_OLPATH: Neovim
+:ARCHIVE_CATEGORY: TODO
+:ARCHIVE_TODO: DONE
+:END:
+to match my evil set-up
+
+* DONE get ~fzf~ working properly
+:PROPERTIES:
+:ARCHIVE_TIME: 2018-10-09 Tue 13:56
+:ARCHIVE_FILE: ~/.dots/TODO.org
+:ARCHIVE_OLPATH: Neovim
+:ARCHIVE_CATEGORY: TODO
+:ARCHIVE_TODO: DONE
+:END:
