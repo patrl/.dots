@@ -13,12 +13,6 @@ in {
      package = unstable.emacs;
    };
 
-   # TODO: get exwm working as an alternative window manager.
-   # services.xserver.windowManager.exwm = {
-   #   enable = true;
-   #      };
-
-
   environment.systemPackages = with pkgs; [
     # emacs26
     # needed for emacs spellchecking.
