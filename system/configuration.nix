@@ -28,6 +28,7 @@ in {
     ./multi-glibc-locale-paths.nix
   ];
 
+
   powerManagement.powertop.enable = true;
 
   services.printing = {
@@ -138,6 +139,7 @@ in {
     inotify-tools
     binutils
     file
+    dropbox
 
     # management tool
     unstable.calibre
@@ -163,7 +165,7 @@ in {
     # games
     retroarch
     brogue
-    (pkgs.dwarf-fortress-packages.dwarf-fortress-full.override {
+    (unstable.pkgs.dwarf-fortress-packages.dwarf-fortress-full.override {
       theme = "gemset";
       enableIntro = false;
     })
@@ -274,6 +276,7 @@ in {
         NIX_SKIP_KEYBASE_CHECKS=1 /run/current-system/sw/bin/keybase-gui &
         ${pkgs.udiskie}/bin/udiskie --s &
         ${pkgs.feh}/bin/feh --bg-max --randomize /home/patrl/Sync/Wallpapers/rotation/* &
+        ${pkgs.dropbox}/bin/dropbox &
       '';
     };
   };
