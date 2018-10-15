@@ -159,7 +159,7 @@ in {
 
     # browsers
     unstable.google-chrome
-    tor-browser-bundle-bin
+    # tor-browser-bundle-bin # FIXME
     # n.b. I install firefox nightly from the mozilla overlays
 
     # games
