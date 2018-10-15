@@ -70,13 +70,22 @@
                  recommendedProxySettings = true;
                  recommendedTlsSettings = true;
                  virtualHosts."patrickdelliott.com" = {
-                                          enableACME = true;
-                                          forceSSL = true;
-                                          locations."/".extraConfig = ''
-                                                                      proxy_pass http://localhost:8080/;
-                                                                      proxy_set_header X-Real-IP $remote_addr;
-                                                                      '';
+                   enableACME = true;
+                   forceSSL = true;
+                   location."/.well-known/acme-challenge".extraConfig = ''
+                     root /var/www/challenges;
+                     '';
+                   locations."/".extraConfig = ''
+                     proxy_pass http://localhost:8080/;
+                     proxy_set_header X-Real-IP $remote_addr;
+                     return 301 https://$host$request_uri;
+                   '';
                  };
+  };
+
+  security.acme.certs."patrickdelliott.com" = {
+    webroot = "/var/www/challenges";
+    email = "patrick.d.elliott@gmail.com";
   };
 
   programs.zsh = {
