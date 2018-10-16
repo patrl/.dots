@@ -31,6 +31,9 @@ in {
 
   powerManagement.powertop.enable = true;
 
+  services.ipfs.enable = true;
+  services.ipfs.extraFlags = [ "--writable" ];
+
   services.printing = {
     enable = true;
     drivers = [ pkgs.gutenprint ];
