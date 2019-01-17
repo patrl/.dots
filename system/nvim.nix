@@ -5,8 +5,8 @@ let
 in {
 
   environment.systemPackages = with pkgs; [
-    unstable.neovim
-    unstable.python36Packages.neovim
+    neovim
+    python36Packages.neovim
       # needed for neovim clipboard
     xsel
   ];
