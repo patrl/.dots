@@ -8,7 +8,7 @@ in {
     ./hardware-breq.nix
     ./compton.nix
     ./bspwm.nix
-    # ./mopidy.nix
+    ./mopidy.nix
     # ./xmonad.nix
     ./st.nix
     ./zsh.nix
@@ -24,7 +24,7 @@ in {
     ./steam.nix
     ./syncthing.nix
     # ./wireguard.nix
-    # ./wine.nix
+    ./wine.nix
     ./multi-glibc-locale-paths.nix
   ];
 
@@ -76,6 +76,13 @@ in {
     support32Bit = true;
   };
 
+  security.pam.loginLimits = [
+    { domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited"; }
+    { domain = "@audio"; item = "rtprio"; type = "-"; value = "99"; }
+    { domain = "@audio"; item = "nofile"; type = "soft"; value = "99999"; }
+    { domain = "@audio"; item = "nofile"; type = "hard"; value = "99999"; }
+  ];
+
   # bluetooth support
   hardware.bluetooth.enable = true;
 
@@ -93,7 +100,7 @@ in {
     unstable.nodejs-8_x # js
     unstable.nodePackages.node2nix
     unstable.coq # coq
-    unstable.idris # agda
+    idris # FIXME broken on unstable channel
 
     # build tools
     gcc
@@ -106,7 +113,6 @@ in {
     jack2Full
     qjackctl
     audacity
-    unstable.supercollider
     pamix
     feh
     gnome3.gnome-screenshot
@@ -142,11 +148,13 @@ in {
     inotify-tools
     binutils
     file
-    dropbox
+    # dropbox FIXME no longer works on non ext4 filesystems. Need to replace this with something!
 
     # management tool
     unstable.calibre
     unstable.zotero
+
+    libreoffice
 
     # launcher
     dmenu
@@ -162,18 +170,16 @@ in {
 
     # browsers
     unstable.google-chrome
-    # tor-browser-bundle-bin # FIXME
+    # tor-browser-bundle# FIXME
     # n.b. I install firefox nightly from the mozilla overlays
 
     # games
     retroarch
     brogue
-    (unstable.pkgs.dwarf-fortress-packages.dwarf-fortress-full.override {
-      theme = "gemset";
-      enableIntro = false;
-    })
+    unstable.cataclysm-dda
+    unstable.sil
     unstable.crispyDoom
-    unstable.love_11
+    # unstable.love_11
 
     # file manager
     xfce.thunar
@@ -194,12 +200,18 @@ in {
     tmux # multiplexer
     htop # process monitor
     scrot # screenshots
+    gtkpod
+
+    unstable.lmms
+    unstable.ardour
+    unstable.renoise
 
     # archive management
     zip
     unzip
     p7zip
 
+    # decentralize
     nodePackages.dat
 
     # version control
@@ -227,8 +239,6 @@ in {
     imagemagick
     gtypist
     wget
-
-    zeal
 
   ];
 
@@ -279,7 +289,7 @@ in {
         NIX_SKIP_KEYBASE_CHECKS=1 /run/current-system/sw/bin/keybase-gui &
         ${pkgs.udiskie}/bin/udiskie --s &
         ${pkgs.feh}/bin/feh --bg-max --randomize /home/patrl/Sync/Wallpapers/rotation/* &
-        ${pkgs.dropbox}/bin/dropbox &
+        # ${pkgs.dropbox}/bin/dropbox &
       '';
     };
   };
@@ -288,7 +298,8 @@ in {
   users.extraUsers.patrl = {
     description = "Patrick Elliott";
     createHome = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    # note that I need to be in the audio group for mopidy
+    extraGroups = [ "wheel" "networkmanager" "audio" ];
     isNormalUser = true;
     uid = 1000;
   };
@@ -316,13 +327,22 @@ in {
       iosevka
       inconsolata
       font-awesome_5
+      # japanese
+      ipafont
+      kochi-substitute
     ];
   };
 
   nixpkgs.config = {
     allowUnfree = true;
+    packageOverrides = pkgs: with pkgs; {
+    haskellPackages = haskellPackages.override {
+    overrides = self: super: {
+    sdl2 = pkgs.haskell.lib.dontCheck super.sdl2;
+    };
+    };
   };
-
+  };
 
   nix = {
    package = pkgs.nixUnstable;
