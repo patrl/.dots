@@ -23,7 +23,7 @@
       bitrate = 320
 
       [local]
-      media_dir = home/patrl/Music
+      media_dir = home/patrl/Sync/music
     '';
   };
 
