@@ -19,9 +19,9 @@ in {
     haskellPackages.structured-haskell-mode
     unstable.haskellPackages.hpack
     unstable.haskellPackages.dhall
-    unstable.haskellPackages.pandoc
-    unstable.haskellPackages.pandoc-citeproc
-    unstable.haskellPackages.Agda
+    haskellPackages.pandoc # FIXME broken on unstable channel
+    haskellPackages.pandoc-citeproc # FIXME broken on unstable channel
+    haskellPackages.Agda # FIXME broken on unstable channel
     # haskellPackages.hpack-dhall
     unstable.stack
     # haskellPackages.stack-run
