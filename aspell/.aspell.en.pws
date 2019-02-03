@@ -1,9 +1,11 @@
-personal_ws-1.1 en 64 
+personal_ws-1.1 en 67 
+implementational
 superset
 additivity
 conditionalise
 presuppositionless
 MaxElide
+implicatures
 presuppositional
 implicature
 monadically
@@ -49,6 +51,7 @@ interveners
 exhaustified
 partialised
 powerset
+answerhood
 unusability
 cataphora
 Informativity

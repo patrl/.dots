@@ -18,29 +18,29 @@
 
   networking.firewall = {
                       enable = true;
-                      rejectPackets = true;
-                      allowPing = true;
-                      allowedTCPPorts = [ 80 443 3282 ];
-                      allowedUDPPorts = [ 3282 ];
+                      # rejectPackets = true;
+                      # allowPing = true;
+                      # allowedTCPPorts = [ 80 443 3282 ];
+                      # allowedUDPPorts = [ 3282 ];
   };
 
   networking.hostName = "toren"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  systemd.services.homebase = {
-                            after = [ "syslog.target" "network.target" "remote-fs.target" "nss-lookup.target" ];
-                            description = "homebase";
-                            serviceConfig = {
-                                            ExecStart = "/run/current-system/sw/bin/node /home/patrl/.node_modules/bin/homebase";
-                                            Restart = "always";
-                                            User = "patrl";
-                                            Group = "users";
-                                            WorkingDirectory="/home/patrl";
-                                            };
-                            # environment = { PATH = ''/home/patrl/bin:/run/wrappers/bin:/etc/profiles/per-user/patrl/bin:/home/patrl/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:/home/patrl/.node_modules/bin''; };
-                            wantedBy = [ "multi-user.target" ];
+#   systemd.services.homebase = {
+#                             after = [ "syslog.target" "network.target" "remote-fs.target" "nss-lookup.target" ];
+#                             description = "homebase";
+#                             serviceConfig = {
+#                                             ExecStart = "/run/current-system/sw/bin/node /home/patrl/.node_modules/bin/homebase";
+#                                             Restart = "always";
+#                                             User = "patrl";
+#                                             Group = "users";
+#                                             WorkingDirectory="/home/patrl";
+#                                             };
+#                             # environment = { PATH = ''/home/patrl/bin:/run/wrappers/bin:/etc/profiles/per-user/patrl/bin:/home/patrl/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:/home/patrl/.node_modules/bin''; };
+#                             wantedBy = [ "multi-user.target" ];
 
-};
+# };
 
   # Select internationalisation properties.
   # i18n = {
@@ -63,47 +63,47 @@
     git
   ];
 
-  services.nginx = {
-                 enable = true;
-                 recommendedGzipSettings = true;
-                 recommendedOptimisation = true;
-                 recommendedProxySettings = true;
-                 recommendedTlsSettings = true;
-                 virtualHosts."patrickdelliott.com" = {
-                   enableACME = true;
-                   forceSSL = true;
-                   location."/.well-known/acme-challenge".extraConfig = ''
-                     root /var/www/challenges;
-                     '';
-                   locations."/".extraConfig = ''
-                     proxy_pass http://localhost:8080/;
-                     proxy_set_header X-Real-IP $remote_addr;
-                     return 301 https://$host$request_uri;
-                   '';
-                 };
-  };
+  # services.nginx = {
+  #                enable = true;
+  #                recommendedGzipSettings = true;
+  #                recommendedOptimisation = true;
+  #                recommendedProxySettings = true;
+  #                recommendedTlsSettings = true;
+  #                virtualHosts."patrickdelliott.com" = {
+  #                  enableACME = true;
+  #                  forceSSL = true;
+  #                  location."/.well-known/acme-challenge".extraConfig = ''
+  #                    root /var/www/challenges;
+  #                    '';
+  #                  locations."/".extraConfig = ''
+  #                    proxy_pass http://localhost:8080/;
+  #                    proxy_set_header X-Real-IP $remote_addr;
+  #                    return 301 https://$host$request_uri;
+  #                  '';
+  #                };
+  # };
 
-  security.acme.certs."patrickdelliott.com" = {
-    webroot = "/var/www/challenges";
-    email = "patrick.d.elliott@gmail.com";
-  };
+  # security.acme.certs."patrickdelliott.com" = {
+  #   webroot = "/var/www/challenges";
+  #   email = "patrick.d.elliott@gmail.com";
+  # };
 
   programs.zsh = {
                enable = true;
                enableCompletion = true;
-               interactiveShellInit = ''
-                                      export npm_config_prefix=~/.node_modules
-                                      path+=('/home/patrl/.node_modules/bin')
-				                              if [[ "$TERM" == "dumb" ]]
-				                              then
-  					                            unsetopt zle
-  					                            unsetopt prompt_cr
-  					                            unsetopt prompt_subst
-  					                            unfunction precmd
-  					                            unfunction preexec
-  					                            PS1='$ '
-				                              fi
-                                      '';
+               # interactiveShellInit = ''
+               #                        export npm_config_prefix=~/.node_modules
+               #                        path+=('/home/patrl/.node_modules/bin')
+				       #                        if [[ "$TERM" == "dumb" ]]
+				       #                        then
+  					   #                          unsetopt zle
+  					   #                          unsetopt prompt_cr
+  					   #                          unsetopt prompt_subst
+  					   #                          unfunction precmd
+  					   #                          unfunction preexec
+  					   #                          PS1='$ '
+				       #                        fi
+               #                        '';
 };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -156,6 +156,6 @@
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "18.03"; # Did you read the comment?
+  system.stateVersion = "18.09"; # Did you read the comment?
 
 }

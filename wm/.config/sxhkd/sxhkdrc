@@ -9,7 +9,7 @@ XF86AudioMute
 
 # terminal emulator
 super + Return
-	alacritty
+	st -f "Input Mono:size=11:antialias=true:autohint=off"
 
 super + e
 	emacsclient -c

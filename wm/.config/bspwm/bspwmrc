@@ -1,9 +1,25 @@
 #! /bin/sh
+
 sxhkd &
+
+my_laptop_external_monitor=$(xrandr --query | grep 'DP1')
+
+if [[ $my_laptop_external_monitor = *connected* ]]; then
+    xrandr --output eDP1 --auto --pos 1800x0 --dpi 277 --output DP1 --auto --dpi 277 --rotate left --scale 1.6666666666666667x1.6666666666666667 --pos 0x0 --fb 5000x3200
+fi
 polybar -r example &
 # tmux -2 new-session -d -s irc weechat &
+#
+feh --bg-fill --randomize /home/patrl/Sync/Wallpapers/rotation/* &
 
-bspc monitor -d I II III IV V VI VII VIII IX X
+
+if [[ $my_laptop_external_monitor = *connected* ]]; then
+    bspc monitor eDP1 -d I II III IV V VI VII VIII IX
+    bspc monitor DP1 -d X
+else
+    bspc monitor -d I II III IV V VI VII VIII IX X
+fi
+
 
 bspc config border_width         4
 bspc config window_gap           24
@@ -11,8 +27,8 @@ bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
-bspc rule -a Nightly desktop='^2' state=tiling follow=on
-bspc rule -a Emacs desktop='^1' state=tiling follow=on
-bspc rule -a Alacritty desktop='^3' state=tiling follow=on
-bspc rule -a Spotify desktop='^4' state=pseudo_tiled follow=on
-bspc rule -a Thunar pseudo_tiled=on
+# bspc rule -a Nightly desktop='^2' state=tiling follow=on
+# bspc rule -a Emacs desktop='^1' state=tiling follow=on
+# bspc rule -a Alacritty desktop='^3' state=tiling follow=on
+# bspc rule -a Spotify desktop='^4' state=pseudo_tiled follow=on
+# bspc rule -a Thunar pseudo_tiled=on

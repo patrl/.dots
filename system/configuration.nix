@@ -8,7 +8,7 @@ in {
     ./hardware-breq.nix
     ./compton.nix
     ./bspwm.nix
-    ./mopidy.nix
+    # ./mopidy.nix
     # ./xmonad.nix
     ./st.nix
     ./zsh.nix
@@ -22,7 +22,7 @@ in {
     # ./rust.nix
     ./redshift.nix
     ./steam.nix
-    ./syncthing.nix
+    # ./syncthing.nix
     # ./wireguard.nix
     ./wine.nix
     ./multi-glibc-locale-paths.nix
@@ -31,8 +31,8 @@ in {
 
   powerManagement.powertop.enable = true;
 
-  services.ipfs.enable = true;
-  services.ipfs.extraFlags = [ "--writable" ];
+  # services.ipfs.enable = true;
+  # services.ipfs.extraFlags = [ "--writable" ];
 
   services.printing = {
     enable = true;
@@ -148,6 +148,7 @@ in {
     inotify-tools
     binutils
     file
+    unstable.insync
     # dropbox FIXME no longer works on non ext4 filesystems. Need to replace this with something!
 
     # management tool
@@ -270,6 +271,7 @@ in {
 
   services.xserver = {
     enable = true;
+    # this gives a DPI of 277x277:
     config = ''
       Section "Monitor"
         Identifier  "<default monitor>"
@@ -288,8 +290,9 @@ in {
         ${pkgs.networkmanagerapplet}/bin/nm-applet &
         NIX_SKIP_KEYBASE_CHECKS=1 /run/current-system/sw/bin/keybase-gui &
         ${pkgs.udiskie}/bin/udiskie --s &
-        ${pkgs.feh}/bin/feh --bg-max --randomize /home/patrl/Sync/Wallpapers/rotation/* &
+        # ${pkgs.feh}/bin/feh --bg-max --randomize /home/patrl/Sync/Wallpapers/rotation/* &
         # ${pkgs.dropbox}/bin/dropbox &
+        ${pkgs.insync}/bin/insync start &
       '';
     };
   };
