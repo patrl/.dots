@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config,  pkgs, ... }:
 
 let
   unstable = import <nixos-unstable> { config = { allowUnfree = true;  }; };
@@ -31,8 +31,8 @@ in {
 
   powerManagement.powertop.enable = true;
 
-  # services.ipfs.enable = true;
-  # services.ipfs.extraFlags = [ "--writable" ];
+  services.ipfs.enable = true;
+  services.ipfs.extraFlags = [ "--writable" ];
 
   services.printing = {
     enable = true;
@@ -86,10 +86,15 @@ in {
   # bluetooth support
   hardware.bluetooth.enable = true;
 
+  hardware.brightnessctl.enable = true;
+
   # necessary for steam
   hardware.opengl.driSupport32Bit = true;
 
+
   environment.systemPackages = with pkgs; [
+
+    # beakerbrowser
 
     # dev
     unstable.rustup
@@ -100,22 +105,24 @@ in {
     unstable.nodejs-8_x # js
     unstable.nodePackages.node2nix
     unstable.coq # coq
-    idris # FIXME broken on unstable channel
+    # idris # FIXME
 
     # build tools
     gcc
     gnumake
 
     # media
-    unstable.spotify
     mpv
-    pavucontrol
-    jack2Full
-    qjackctl
-    audacity
-    pamix
     feh
     gnome3.gnome-screenshot
+
+    # audio
+    qjackctl
+    jack2Full
+    pavucontrol
+    audacity
+    unstable.spotify
+    pamix
 
     # pdf
     evince
@@ -141,15 +148,15 @@ in {
     (pkgs.transmission.override { enableGTK3 = true; })
 
     # misc
+    filezilla
+    acpilight
     gtk3-x11
     gnome3.dconf
-    xlibs.xbacklight
     unstable.w3m
     inotify-tools
     binutils
     file
-    unstable.insync
-    # dropbox FIXME no longer works on non ext4 filesystems. Need to replace this with something!
+    unstable.drive
 
     # management tool
     unstable.calibre
@@ -159,8 +166,6 @@ in {
 
     # launcher
     dmenu
-    # unstable.rofi-pass
-    # unstable.rofi
     rofi-pass
     rofi
 
@@ -179,7 +184,6 @@ in {
     brogue
     unstable.cataclysm-dda
     unstable.sil
-    unstable.crispyDoom
     # unstable.love_11
 
     # file manager
@@ -240,6 +244,8 @@ in {
     imagemagick
     gtypist
     wget
+    libqrencode
+    zbar
 
   ];
 
@@ -292,7 +298,7 @@ in {
         ${pkgs.udiskie}/bin/udiskie --s &
         # ${pkgs.feh}/bin/feh --bg-max --randomize /home/patrl/Sync/Wallpapers/rotation/* &
         # ${pkgs.dropbox}/bin/dropbox &
-        ${pkgs.insync}/bin/insync start &
+        # ${pkgs.insync}/bin/insync start &
       '';
     };
   };
@@ -301,8 +307,8 @@ in {
   users.extraUsers.patrl = {
     description = "Patrick Elliott";
     createHome = true;
-    # note that I need to be in the audio group for mopidy
-    extraGroups = [ "wheel" "networkmanager" "audio" ];
+    # note that I need to be in the audio group for mopidy and the video group for backlight control
+    extraGroups = [ "wheel" "networkmanager" "audio" "video" ];
     isNormalUser = true;
     uid = 1000;
   };

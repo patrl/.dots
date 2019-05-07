@@ -15,13 +15,13 @@ in {
     haskellPackages.apply-refact
     haskellPackages.cabal2nix
     haskellPackages.styx
-    haskellPackages.brittany
+    # unstable.haskellPackages.brittany # FIXME
     haskellPackages.structured-haskell-mode
     unstable.haskellPackages.hpack
     unstable.haskellPackages.dhall
-    haskellPackages.pandoc # FIXME broken on unstable channel
-    haskellPackages.pandoc-citeproc # FIXME broken on unstable channel
-    haskellPackages.Agda # FIXME broken on unstable channel
+    haskellPackages.pandoc
+    haskellPackages.pandoc-citeproc
+    unstable.haskellPackages.Agda # FIXME
     # haskellPackages.hpack-dhall
     unstable.stack
     # haskellPackages.stack-run
