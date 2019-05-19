@@ -28,7 +28,6 @@ in {
     ./multi-glibc-locale-paths.nix
   ];
 
-
   powerManagement.powertop.enable = true;
 
   services.ipfs.enable = true;
@@ -307,7 +306,7 @@ in {
   users.extraUsers.patrl = {
     description = "Patrick Elliott";
     createHome = true;
-    # note that I need to be in the audio group for mopidy and the video group for backlight control
+    # note that I need to be in the audio group for mopidy
     extraGroups = [ "wheel" "networkmanager" "audio" "video" ];
     isNormalUser = true;
     uid = 1000;
@@ -375,17 +374,6 @@ in {
   # should.
   system.stateVersion = "18.03"; # Did you read the comment?
 
-  services.nixosManual = {
-    enable = true;
-    showManual = true;
-    ttyNumber = 8;
-  };
-
   services.upower.enable = true;
-
-  # services.xserver.windowManager.bspwm.enable = true;
-
-  # services.xserver.windowManager.default = "bspwm";
-
 
 }
