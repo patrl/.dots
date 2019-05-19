@@ -1,0 +1,1 @@
+/home/patrl/GitHub/nixpkgs-mozilla/rust-overlay.nix
