@@ -104,7 +104,7 @@ in {
     unstable.nodejs-8_x # js
     unstable.nodePackages.node2nix
     unstable.coq # coq
-    # idris # FIXME
+    unstable.idris # FIXME
 
     # build tools
     gcc
