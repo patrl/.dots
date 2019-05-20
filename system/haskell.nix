@@ -10,18 +10,19 @@ in {
     # haskellPackages.ghc-mod
     # haskell.packages.ghc802.ghc-mod
     haskellPackages.cabal-install
+    # unstable.haskellPackages.nix-tools
     haskellPackages.hlint
     haskellPackages.hasktags
     haskellPackages.apply-refact
     haskellPackages.cabal2nix
     haskellPackages.styx
-    # unstable.haskellPackages.brittany # FIXME
+    # haskellPackages.brittany # FIXME
     haskellPackages.structured-haskell-mode
     unstable.haskellPackages.hpack
     unstable.haskellPackages.dhall
     haskellPackages.pandoc
     haskellPackages.pandoc-citeproc
-    unstable.haskellPackages.Agda # FIXME
+    unstable.haskellPackages.Agda
     # haskellPackages.hpack-dhall
     unstable.stack
     # haskellPackages.stack-run
