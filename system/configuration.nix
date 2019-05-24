@@ -93,8 +93,6 @@ in {
 
   environment.systemPackages = with pkgs; [
 
-    # beakerbrowser
-
     # dev
     unstable.rustup
     unstable.racket
@@ -147,8 +145,7 @@ in {
     (pkgs.transmission.override { enableGTK3 = true; })
 
     # misc
-    filezilla
-    acpilight
+    acpilight # needed for backlight
     gtk3-x11
     gnome3.dconf
     unstable.w3m
@@ -175,7 +172,6 @@ in {
 
     # browsers
     unstable.google-chrome
-    # tor-browser-bundle# FIXME
     # n.b. I install firefox nightly from the mozilla overlays
 
     # games
@@ -295,7 +291,7 @@ in {
         ${pkgs.networkmanagerapplet}/bin/nm-applet &
         NIX_SKIP_KEYBASE_CHECKS=1 /run/current-system/sw/bin/keybase-gui &
         ${pkgs.udiskie}/bin/udiskie --s &
-        # ${pkgs.feh}/bin/feh --bg-max --randomize /home/patrl/Sync/Wallpapers/rotation/* &
+        # ${pkgs.feh}/bin/feh --bg-max --randomize /home/patrl/gdrive/Wallpapers/rotation/* &
         # ${pkgs.dropbox}/bin/dropbox &
         # ${pkgs.insync}/bin/insync start &
       '';
@@ -357,8 +353,7 @@ in {
    autoOptimiseStore = true;
    binaryCaches = [
      "https://cache.nixos.org/"
-     # binary cache for reflex-platform
-     "https://nixcache.reflex-frp.org"
+     "https://nixcache.reflex-frp.org" # binary cache for reflex-platform
      "https://hie-nix.cachix.org"
    ];
     binaryCachePublicKeys = [
