@@ -1,7 +1,3 @@
-[user]
-	name = Patrick Elliott
-	email = patrick.d.elliott@gmail.com
-	signingkey = 1B5E5824F4429D036C8A17517CA109C3974AF5FA
 [credential]
 	helper = cache --timeout=7200
 [include]
@@ -29,5 +25,5 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
-[github]
-	user = patrl
+[include]
+	path = secret
