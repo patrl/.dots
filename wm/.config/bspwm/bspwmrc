@@ -10,7 +10,7 @@ fi
 polybar -r example &
 # tmux -2 new-session -d -s irc weechat &
 #
-feh --bg-fill --randomize /home/patrl/Sync/Wallpapers/rotation/* &
+feh --bg-fill --randomize /home/patrl/gdrive/Wallpapers/rotation/* &
 
 
 if [[ $my_laptop_external_monitor = *connected* ]]; then
