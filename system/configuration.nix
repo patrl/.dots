@@ -153,6 +153,8 @@ in {
     binutils
     file
     unstable.drive
+    unstable.insync
+    snapper
 
     # management tool
     unstable.calibre
@@ -293,7 +295,7 @@ in {
         ${pkgs.udiskie}/bin/udiskie --s &
         # ${pkgs.feh}/bin/feh --bg-max --randomize /home/patrl/gdrive/Wallpapers/rotation/* &
         # ${pkgs.dropbox}/bin/dropbox &
-        # ${pkgs.insync}/bin/insync start &
+        ${pkgs.insync}/bin/insync start &
       '';
     };
   };
