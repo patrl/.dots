@@ -371,4 +371,13 @@ in {
 
   services.upower.enable = true;
 
+  services.snapper.configs = {
+    "home" = {
+      subvolume = "/home";
+      extraConfig = ''
+        ALLOW_USERS="patrl"
+      '';
+    };
+  };
+
 }

@@ -24,6 +24,12 @@
       options = [ "rw" "noatime" "compress=lzo" "ssd" "discard" "space_cache" "subvol=@nixos-home" ];
     };
 
+  fileSystems."/home/.snapshots" =
+    { device = "/dev/disk/by-uuid/57ce2148-d18e-4e00-88f4-f3ead4843936";
+      fsType = "btrfs";
+      options = [ "rw" "noatime" "compress=lzo" "ssd" "discard" "space_cache" "subvol=@nixos-home-snaps" ];
+    };
+
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/8709-ED44";
       fsType = "vfat";
