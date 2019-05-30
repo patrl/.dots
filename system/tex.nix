@@ -9,6 +9,7 @@ in {
       (unstable.texlive.combine {
         inherit (unstable.texlive)
          # classico
+         tree-dvips
          eulervm
          newpx
          kantlipsum

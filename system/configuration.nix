@@ -153,7 +153,6 @@ in {
     binutils
     file
     unstable.drive
-    unstable.insync
     snapper
 
     # management tool
@@ -221,6 +220,7 @@ in {
     gitAndTools.hub
     gitAndTools.gitFull
     gitAndTools.git-annex
+    lsof
     gist
 
     # password management
@@ -243,6 +243,9 @@ in {
     wget
     libqrencode
     zbar
+    unstable.rclone
+    unstable.nnn
+    trash-cli
 
   ];
 
@@ -295,7 +298,7 @@ in {
         ${pkgs.udiskie}/bin/udiskie --s &
         # ${pkgs.feh}/bin/feh --bg-max --randomize /home/patrl/gdrive/Wallpapers/rotation/* &
         # ${pkgs.dropbox}/bin/dropbox &
-        ${pkgs.insync}/bin/insync start &
+        # ${pkgs.insync}/bin/insync start &
       '';
     };
   };
@@ -381,5 +384,7 @@ in {
       '';
     };
   };
+
+  services.snapper.cleanupInterval = "1d";
 
 }
