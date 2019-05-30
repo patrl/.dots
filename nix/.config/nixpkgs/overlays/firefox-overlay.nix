@@ -1,1 +1,1 @@
-/home/patrl/GitHub/nixpkgs-mozilla/firefox-overlay.nix
+/home/patrl/repos/nixpkgs-mozilla/firefox-overlay.nix
