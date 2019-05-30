@@ -65,6 +65,20 @@ zplugin light zdharma/zplugin-crasis
 
 export MANPAGER="nvim -c 'set ft=man' -"
 
+export NNN_TRASH=1 # nnn trashes files to the desktop Trash
+
+export NNN_TMPFILE="/tmp/nnn"
+
+n()
+{
+        nnn "$@"
+
+        if [ -f $NNN_TMPFILE ]; then
+                . $NNN_TMPFILE
+                rm $NNN_TMPFILE
+        fi
+}
+
 # my aliases
 alias ll='exa -l'
 alias ls='exa'
