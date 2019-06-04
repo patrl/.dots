@@ -154,6 +154,7 @@ in {
     file
     unstable.drive
     snapper
+    hdparm
 
     # management tool
     unstable.calibre
@@ -246,7 +247,6 @@ in {
     unstable.rclone
     unstable.nnn
     trash-cli
-
   ];
 
   environment.etc = {
@@ -274,6 +274,8 @@ in {
   services.openssh.permitRootLogin = "yes";
 
   programs.ssh.askPassword = "";
+
+  virtualisation.virtualbox.host.enable = true;
 
   services.xserver = {
     enable = true;
@@ -308,7 +310,7 @@ in {
     description = "Patrick Elliott";
     createHome = true;
     # note that I need to be in the audio group for mopidy
-    extraGroups = [ "wheel" "networkmanager" "audio" "video" ];
+    extraGroups = [ "wheel" "networkmanager" "audio" "video" "vboxusers" ];
     isNormalUser = true;
     uid = 1000;
   };
