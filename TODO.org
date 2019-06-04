@@ -3,3 +3,4 @@
 * Shell
 
 ** TODO experiment more with ~fish~
+** TODO learn how to use ~nnn~ properly
