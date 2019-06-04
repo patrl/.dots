@@ -65,9 +65,10 @@ zplugin light zdharma/zplugin-crasis
 
 export MANPAGER="nvim -c 'set ft=man' -"
 
+# nnn stuff
 export NNN_TRASH=1 # nnn trashes files to the desktop Trash
-
 export NNN_TMPFILE="/tmp/nnn"
+export NNN_USE_EDITOR=1
 
 n()
 {
