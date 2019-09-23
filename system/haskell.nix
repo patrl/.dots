@@ -16,10 +16,10 @@ in {
     haskellPackages.apply-refact
     haskellPackages.cabal2nix
     haskellPackages.styx
-    # haskellPackages.brittany # FIXME
+    # (unstable.haskell.lib.dontCheck unstable.haskellPackages.brittany)
     haskellPackages.structured-haskell-mode
-    unstable.haskellPackages.hpack
-    unstable.haskellPackages.dhall
+    # unstable.haskellPackages.hpack
+    # unstable.haskellPackages.dhall
     haskellPackages.pandoc
     haskellPackages.pandoc-citeproc
     unstable.haskellPackages.Agda

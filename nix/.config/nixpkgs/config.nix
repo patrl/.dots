@@ -5,4 +5,5 @@ allowUnfree = true;
       # theme = "gemset";
     # };
   # };
+allowBroken = true;
 }

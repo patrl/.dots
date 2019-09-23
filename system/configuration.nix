@@ -5,11 +5,13 @@ let
 in {
   imports =
   [ # Include the results of the hardware scan.
+    ./gnome.nix
+    ./xorg.nix
     ./hardware-breq.nix
+    ./wayland.nix
     ./compton.nix
     ./bspwm.nix
     # ./mopidy.nix
-    # ./xmonad.nix
     ./st.nix
     ./zsh.nix
     ./fish.nix
@@ -20,18 +22,14 @@ in {
     ./nvim.nix
     ./haskell.nix
     # ./rust.nix
-    ./redshift.nix
+    # ./redshift.nix
     ./steam.nix
-    # ./syncthing.nix
-    # ./wireguard.nix
     ./wine.nix
     ./multi-glibc-locale-paths.nix
+    ./yubikey.nix
   ];
 
-  powerManagement.powertop.enable = true;
-
-  services.ipfs.enable = true;
-  services.ipfs.extraFlags = [ "--writable" ];
+  powerManagement.powertop.enable = true; # power saving
 
   services.printing = {
     enable = true;
@@ -48,7 +46,9 @@ in {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
       grub.enable = false;};
-    plymouth.enable = true;};
+      # plymouth.enable = true;
+      extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ]; # exfat support
+  };
 
   networking = {
     hostName = "breq";
@@ -66,43 +66,32 @@ in {
 
 
   # Set your time zone.
-  time.timeZone = "Europe/Berlin";
+  time.timeZone = "America/New_York";
 
-  # Pulse with additional support for jack
+  # Pulse
   hardware.pulseaudio = {
     enable = true;
-    package = pkgs.pulseaudioFull.override { jackaudioSupport = true; };
-    support32Bit = true;
+    support32Bit = true; # need this for steam
   };
-
-  security.pam.loginLimits = [
-    { domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited"; }
-    { domain = "@audio"; item = "rtprio"; type = "-"; value = "99"; }
-    { domain = "@audio"; item = "nofile"; type = "soft"; value = "99999"; }
-    { domain = "@audio"; item = "nofile"; type = "hard"; value = "99999"; }
-  ];
 
   # bluetooth support
   hardware.bluetooth.enable = true;
 
+  # brightness support
   hardware.brightnessctl.enable = true;
 
   # necessary for steam
   hardware.opengl.driSupport32Bit = true;
 
-
   environment.systemPackages = with pkgs; [
 
-    # dev
     unstable.rustup
     unstable.racket
     unstable.carnix
     unstable.sbcl # common lisp
     unstable.leiningen # clojure
-    unstable.nodejs-8_x # js
-    unstable.nodePackages.node2nix
     unstable.coq # coq
-    unstable.idris # FIXME
+    unstable.idris
 
     # build tools
     gcc
@@ -111,12 +100,8 @@ in {
     # media
     mpv
     feh
-    gnome3.gnome-screenshot
 
     # audio
-    qjackctl
-    jack2Full
-    pavucontrol
     audacity
     unstable.spotify
     pamix
@@ -124,40 +109,37 @@ in {
     # pdf
     evince
     zathura
+    xournal # for signing and annotations
 
-    # webcam
-    guvcview
-
-    # terminal
-    unstable.alacritty
 
     # chat
     unstable.discord
 
     # applets
-    blueman
+    blueman # necessary with a WM
     networkmanagerapplet
     udiskie
-    python27Packages.websocket_client
-    unstable.neofetch
+    # python27Packages.websocket_client
+    # unstable.neofetch
 
     # torrent
     (pkgs.transmission.override { enableGTK3 = true; })
 
+    unstable.solaar
+
+    unstable.alacritty
+
     # misc
     acpilight # needed for backlight
-    gtk3-x11
-    gnome3.dconf
-    unstable.w3m
+    # gtk3-x11
+    # unstable.w3m
     inotify-tools
     binutils
     file
-    unstable.drive
     snapper
     hdparm
 
     # management tool
-    unstable.calibre
     unstable.zotero
 
     libreoffice
@@ -175,6 +157,7 @@ in {
     # browsers
     unstable.google-chrome
     # n.b. I install firefox nightly from the mozilla overlays
+    # unstable.chromium
 
     # games
     retroarch
@@ -184,7 +167,6 @@ in {
     # unstable.love_11
 
     # file manager
-    xfce.thunar
     ranger
     libcaca
 
@@ -202,19 +184,12 @@ in {
     tmux # multiplexer
     htop # process monitor
     scrot # screenshots
-    gtkpod
-
-    unstable.lmms
-    unstable.ardour
-    unstable.renoise
+    unstable.gtkpod
 
     # archive management
     zip
     unzip
     p7zip
-
-    # decentralize
-    nodePackages.dat
 
     # version control
     subversion
@@ -247,26 +222,21 @@ in {
     unstable.rclone
     unstable.nnn
     trash-cli
+    unstable.direnv
+    perl528Packages.FileMimeInfo
   ];
 
-  environment.etc = {
-    "gtk-2.0/gtkrc".text = ''
-      gtk-cursor-theme-name = Vanilla-DMZ
-      gtk-cursor-theme-size = 48
-    '';
-    "gtk3.0/settings.ini".text = ''
-      gtk-cursor-theme-name = Vanilla-DMZ
-      gtk-cursor-theme-size = 48
-    '';
-    "geoclue/geoclue.conf".text = ''
-      [redshift]
-      allowed=true
-      system=false
-      users=
-    '';
-  };
+  # environment.etc = {
+  #   "gtk-2.0/gtkrc".text = ''
+  #     gtk-cursor-theme-name = Vanilla-DMZ
+  #     gtk-cursor-theme-size = 48
+  #   '';
+  #   "gtk3.0/settings.ini".text = ''
+  #     gtk-cursor-theme-name = Vanilla-DMZ
+  #     gtk-cursor-theme-size = 48
+  #   '';
+  # };
 
-  programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
@@ -274,36 +244,6 @@ in {
   services.openssh.permitRootLogin = "yes";
 
   programs.ssh.askPassword = "";
-
-  virtualisation.virtualbox.host.enable = true;
-
-  services.xserver = {
-    enable = true;
-    # this gives a DPI of 277x277:
-    config = ''
-      Section "Monitor"
-        Identifier  "<default monitor>"
-        DisplaySize 293 165
-      EndSection
-      '';
-    layout = "gb";
-    xkbOptions = "eurosign:4";
-    libinput.enable = true;
-    displayManager = {
-      slim.enable = true;
-      slim.defaultUser = "patrl";
-      sessionCommands = ''
-        xrdb -merge /etc/X11/Xresources
-        xsetroot -xcf ${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ/cursors/X_cursor 48
-        ${pkgs.networkmanagerapplet}/bin/nm-applet &
-        NIX_SKIP_KEYBASE_CHECKS=1 /run/current-system/sw/bin/keybase-gui &
-        ${pkgs.udiskie}/bin/udiskie --s &
-        # ${pkgs.feh}/bin/feh --bg-max --randomize /home/patrl/gdrive/Wallpapers/rotation/* &
-        # ${pkgs.dropbox}/bin/dropbox &
-        # ${pkgs.insync}/bin/insync start &
-      '';
-    };
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.patrl = {
@@ -318,6 +258,8 @@ in {
   security.sudo.wheelNeedsPassword = false;
 
   hardware.cpu.intel.updateMicrocode = true;
+
+  services.udev.packages = with pkgs; [ unstable.logitech-udev-rules ];
 
   fonts = {
     fontconfig.penultimate.enable = true;
@@ -362,10 +304,12 @@ in {
      "https://cache.nixos.org/"
      "https://nixcache.reflex-frp.org" # binary cache for reflex-platform
      "https://hie-nix.cachix.org"
+     "https://nixpkgs-wayland.cachix.org"
    ];
     binaryCachePublicKeys = [
       "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
       "hie-nix.cachix.org-1:EjBSHzF6VmDnzqlldGXbi0RM3HdjfTU3yDRi9Pd0jTY="
+      "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
     ];
     trustedUsers =[ "root" "patrl" ];
   };
@@ -383,10 +327,12 @@ in {
       subvolume = "/home";
       extraConfig = ''
         ALLOW_USERS="patrl"
+        TIMELINE_CREATE="yes"
       '';
     };
   };
 
   services.snapper.cleanupInterval = "1d";
+  services.snapper.snapshotInterval = "hourly";
 
 }

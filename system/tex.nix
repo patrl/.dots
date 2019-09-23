@@ -6,10 +6,14 @@ in {
       # should be interesting to try out the following:
       unstable.python27Packages.pygments
       # unstable.biber # FIXME throws a perl error. See https://nuget.pkg.github.com/NixOS/nixpkgs/issues/61520
-      biber
+      unstable.biber
       (unstable.texlive.combine {
         inherit (unstable.texlive)
          # classico
+         babel-german
+         bbding
+         cleveref
+         boondox
          tree-dvips
          eulervm
          newpx
