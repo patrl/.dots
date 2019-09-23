@@ -6,7 +6,8 @@ git-annex assistant --autostart &
 my_laptop_external_monitor=$(xrandr --query | grep 'DP1')
 
 if [[ $my_laptop_external_monitor = *connected* ]]; then
-    xrandr --output eDP1 --auto --pos 1800x0 --dpi 277 --output DP1 --auto --dpi 277 --rotate left --scale 1.6666666666666667x1.6666666666666667 --pos 0x0 --fb 5000x3200
+    # xrandr --output eDP1 --auto --pos 1800x0 --dpi 277 --output DP1 --auto --dpi 277 --rotate left --scale 1.6666666666666667x1.6666666666666667 --pos 0x0 --fb 5000x3200
+    xrandr --output eDP1 --off --output DP1 --auto --dpi 109
 fi
 polybar -r example &
 # tmux -2 new-session -d -s irc weechat &
@@ -14,12 +15,12 @@ polybar -r example &
 feh --bg-fill --randomize /home/patrl/annex/wallpaper/rotation/* &
 
 
-if [[ $my_laptop_external_monitor = *connected* ]]; then
-    bspc monitor eDP1 -d I II III IV V VI VII VIII IX
-    bspc monitor DP1 -d X
-else
-    bspc monitor -d I II III IV V VI VII VIII IX X
-fi
+# if [[ $my_laptop_external_monitor = *connected* ]]; then
+    # bspc monitor eDP1 -d I II III IV V VI VII VIII IX
+    # bspc monitor DP1 -d X
+# else
+bspc monitor -d I II III IV V VI VII VIII IX X
+# fi
 
 
 bspc config border_width         4

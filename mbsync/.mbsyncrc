@@ -88,10 +88,3 @@ Slave :zas-local:archive
 Create Slave
 Remove Slave
 SyncState *
-
-Channel zas-drafts
-Master :zas-remote:"Drafts"
-Slave :zas-local:drafts
-Create Slave
-Remove Slave
-SyncState *

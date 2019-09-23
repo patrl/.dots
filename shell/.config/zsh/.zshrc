@@ -65,20 +65,8 @@ zplugin light zdharma/zplugin-crasis
 
 export MANPAGER="nvim -c 'set ft=man' -"
 
-# nnn stuff
-export NNN_TRASH=1 # nnn trashes files to the desktop Trash
-export NNN_TMPFILE="/tmp/nnn"
-export NNN_USE_EDITOR=1
-
-n()
-{
-        nnn "$@"
-
-        if [ -f $NNN_TMPFILE ]; then
-                . $NNN_TMPFILE
-                rm $NNN_TMPFILE
-        fi
-}
+# direnv stuff
+eval "$(direnv hook zsh)"
 
 # my aliases
 alias ll='exa -l'
