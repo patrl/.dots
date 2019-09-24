@@ -93,6 +93,8 @@ in {
     unstable.coq # coq
     unstable.idris
 
+    unstable.termite
+
     # build tools
     gcc
     gnumake

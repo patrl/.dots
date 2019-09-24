@@ -7,7 +7,18 @@ in
   {
     nixpkgs.overlays = [ waylandOverlay ];
     programs.sway.enable = true;
+    programs.sway.extraSessionCommands = ''
+     MOZ_ENABLE_WAYLAND=1
+     export SDL_VIDEODRIVER=wayland
+    # needs qt5.qtwayland in systemPackages
+     export QT_QPA_PLATFORM=wayland
+     export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+    # Fix for some Java AWT applications (e.g. Android Studio),
+    # use this if they aren't displayed properly:
+     export _JAVA_AWT_WM_NONREPARENTING=1
+      '';
     programs.sway.extraPackages = with pkgs; [
+      cage
       xwayland
       swaybg   # required by sway for controlling desktop wallpaper
       swayidle # used for controlling idle timeouts and triggers (screen locking, etc)
@@ -29,6 +40,10 @@ in
 
       # TODO: more steps required to use this?
       xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots
+
+      unstable.j4-dmenu-desktop
+
+      unstable.bemenu
     ];
 
     services.xserver.displayManager.extraSessionFilePackages = [ pkgs.sway ];

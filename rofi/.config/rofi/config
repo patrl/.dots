@@ -1,7 +1,7 @@
 Xcursor.size: 48
 Xcursor.theme: elementary
-Xft.dpi: 192
-rofi.font: Input Mono 30
+Xft.dpi: 96
+rofi.font: Input Mono 15
 rofi.terminal: alacritty
 rofi.color-enabled: true
 rofi.separator-style: solid

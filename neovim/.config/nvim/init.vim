@@ -182,7 +182,7 @@ let g:thematic#themes = {
 			\		  },
 			\ }
 "
-let g:thematic#theme_name = 'dracula'
+let g:thematic#theme_name = 'pencil_lite'
 " }}}
 "
 Plug 'ryanoasis/vim-devicons'
