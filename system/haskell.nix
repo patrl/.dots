@@ -1,8 +1,9 @@
 { config, pkgs, ... }:
 
 let
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-in {
+  stable = import <nixos-stable> { config = { allowUnfree = true;  }; };
+in
+{
   environment.systemPackages = with pkgs; [
 
     haskellPackages.ghc
@@ -14,7 +15,7 @@ in {
     haskellPackages.hlint
     haskellPackages.hasktags
     haskellPackages.apply-refact
-    haskellPackages.cabal2nix
+    stable.haskellPackages.cabal2nix
     haskellPackages.styx
     # (unstable.haskell.lib.dontCheck unstable.haskellPackages.brittany)
     haskellPackages.structured-haskell-mode
@@ -22,9 +23,9 @@ in {
     # unstable.haskellPackages.dhall
     haskellPackages.pandoc
     haskellPackages.pandoc-citeproc
-    unstable.haskellPackages.Agda
+    haskellPackages.Agda
     # haskellPackages.hpack-dhall
-    unstable.stack
+    stack
     # haskellPackages.stack-run
   ];
 

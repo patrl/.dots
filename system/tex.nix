@@ -1,14 +1,13 @@
 {config, pkgs, ... }:
-let
-  unstable = import <nixos-unstable> {};
-in {
+
+{
     environment.systemPackages = with pkgs; [
       # should be interesting to try out the following:
-      unstable.python27Packages.pygments
+      python27Packages.pygments
       # unstable.biber # FIXME throws a perl error. See https://nuget.pkg.github.com/NixOS/nixpkgs/issues/61520
-      unstable.biber
-      (unstable.texlive.combine {
-        inherit (unstable.texlive)
+      biber
+      (texlive.combine {
+        inherit (texlive)
          # classico
          babel-german
          bbding

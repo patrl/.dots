@@ -2,7 +2,7 @@
 let
   url = "https://github.com/colemickens/nixpkgs-wayland/archive/master.tar.gz";
   waylandOverlay = (import (builtins.fetchTarball url));
-  unstable = import <nixos-unstable> { config = { allowUnfree = true;  }; };
+  # unstable = import <nixos-unstable> { config = { allowUnfree = true;  }; };
 in
   {
     nixpkgs.overlays = [ waylandOverlay ];
@@ -23,7 +23,7 @@ in
       swaybg   # required by sway for controlling desktop wallpaper
       swayidle # used for controlling idle timeouts and triggers (screen locking, etc)
       swaylock # used for locking Wayland sessions
-      unstable.waybar        # polybar-alike
+      waybar        # polybar-alike
       # i3status-rust # simpler bar written in Rust
       gebaar-libinput  # libinput gestures utility
       glpaper          # GL shaders as wallpaper
@@ -41,9 +41,9 @@ in
       # TODO: more steps required to use this?
       xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots
 
-      unstable.j4-dmenu-desktop
+      j4-dmenu-desktop
 
-      unstable.bemenu
+      bemenu
     ];
 
     services.xserver.displayManager.extraSessionFilePackages = [ pkgs.sway ];

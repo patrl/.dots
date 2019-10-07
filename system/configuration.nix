@@ -1,7 +1,7 @@
 { config,  pkgs, ... }:
 
 let
-  unstable = import <nixos-unstable> { config = { allowUnfree = true;  }; };
+  stable = import <nixos-stable> { config = { allowUnfree = true;  }; };
 in {
   imports =
   [ # Include the results of the hardware scan.
@@ -46,7 +46,7 @@ in {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
       grub.enable = false;};
-      # plymouth.enable = true;
+      # plymouth.enable = true; # makes the boot screen a little bit nicer. Completely pointless.
       extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ]; # exfat support
   };
 
@@ -72,10 +72,14 @@ in {
   hardware.pulseaudio = {
     enable = true;
     support32Bit = true; # need this for steam
+    extraModules = [ pkgs.pulseaudio-modules-bt ];
   };
 
   # bluetooth support
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+  };
 
   # brightness support
   hardware.brightnessctl.enable = true;
@@ -85,15 +89,16 @@ in {
 
   environment.systemPackages = with pkgs; [
 
-    unstable.rustup
-    unstable.racket
-    unstable.carnix
-    unstable.sbcl # common lisp
-    unstable.leiningen # clojure
-    unstable.coq # coq
-    unstable.idris
+    rustup # rust
+    racket # racket
+    carnix
+    sbcl # common lisp
+    leiningen # clojure
+    coq # coq
+    idris # idris
 
-    unstable.termite
+    # terminal emulator (wayland)
+    termite
 
     # build tools
     gcc
@@ -105,7 +110,7 @@ in {
 
     # audio
     audacity
-    unstable.spotify
+    spotify
     pamix
 
     # pdf
@@ -115,7 +120,7 @@ in {
 
 
     # chat
-    unstable.discord
+    discord
 
     # applets
     blueman # necessary with a WM
@@ -127,9 +132,9 @@ in {
     # torrent
     (pkgs.transmission.override { enableGTK3 = true; })
 
-    unstable.solaar
+    solaar
 
-    unstable.alacritty
+    alacritty
 
     # misc
     acpilight # needed for backlight
@@ -142,7 +147,7 @@ in {
     hdparm
 
     # management tool
-    unstable.zotero
+    zotero
 
     libreoffice
 
@@ -157,15 +162,15 @@ in {
     vanilla-dmz
 
     # browsers
-    unstable.google-chrome
+    # unstable.google-chrome
     # n.b. I install firefox nightly from the mozilla overlays
-    # unstable.chromium
+    chromium
 
     # games
-    retroarch
+    # retroarch
     brogue
-    unstable.cataclysm-dda
-    unstable.sil
+    cataclysm-dda
+    sil
     # unstable.love_11
 
     # file manager
@@ -177,16 +182,16 @@ in {
     ffmpeg
 
     # cli tools
-    unstable.bat # cat clone
-    unstable.fd # find clone
-    unstable.ripgrep # grep clone
-    unstable.exa # ls clone
+    bat # cat clone
+    fd # find clone
+    ripgrep # grep clone
+    exa # ls clone
     # unstable.fzf # fuzzy finding
     stow # manage sym-links
     tmux # multiplexer
     htop # process monitor
     scrot # screenshots
-    unstable.gtkpod
+    gtkpod
 
     # archive management
     zip
@@ -221,11 +226,14 @@ in {
     wget
     libqrencode
     zbar
-    unstable.rclone
-    unstable.nnn
+    rclone
     trash-cli
-    unstable.direnv
+    direnv
     perl528Packages.FileMimeInfo
+
+    # file manager
+    nnn
+    # unstable.ranger
   ];
 
   # environment.etc = {
@@ -261,7 +269,7 @@ in {
 
   hardware.cpu.intel.updateMicrocode = true;
 
-  services.udev.packages = with pkgs; [ unstable.logitech-udev-rules ];
+  services.udev.packages = with pkgs; [ logitech-udev-rules ];
 
   fonts = {
     fontconfig.penultimate.enable = true;
