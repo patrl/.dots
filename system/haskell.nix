@@ -4,6 +4,7 @@ let
   stable = import <nixos-stable> { config = { allowUnfree = true;  }; };
 in
 {
+
   environment.systemPackages = with pkgs; [
 
     haskellPackages.ghc
@@ -17,7 +18,7 @@ in
     haskellPackages.apply-refact
     stable.haskellPackages.cabal2nix
     haskellPackages.styx
-    # (unstable.haskell.lib.dontCheck unstable.haskellPackages.brittany)
+    haskellPackages.brittany
     haskellPackages.structured-haskell-mode
     # unstable.haskellPackages.hpack
     # unstable.haskellPackages.dhall

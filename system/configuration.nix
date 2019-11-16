@@ -220,6 +220,7 @@ in {
     scrot
     krita
     gnupg
+    pinentry-curses
 
     imagemagick
     gtypist
@@ -246,6 +247,10 @@ in {
   #     gtk-cursor-theme-size = 48
   #   '';
   # };
+  #
+  programs.gnupg.agent.enable = true;
+  programs.gnupg.agent.enableSSHSupport = true;
+  programs.ssh.startAgent = false;
 
 
   # Enable the OpenSSH daemon.
@@ -332,17 +337,17 @@ in {
 
   services.upower.enable = true;
 
-  services.snapper.configs = {
-    "home" = {
-      subvolume = "/home";
-      extraConfig = ''
-        ALLOW_USERS="patrl"
-        TIMELINE_CREATE="yes"
-      '';
-    };
-  };
+  # services.snapper.configs = {
+  #   "home" = {
+  #     subvolume = "/home";
+  #     extraConfig = ''
+  #       ALLOW_USERS="patrl"
+  #       TIMELINE_CREATE="yes"
+  #     '';
+  #   };
+  # };
 
-  services.snapper.cleanupInterval = "1d";
-  services.snapper.snapshotInterval = "hourly";
+  # services.snapper.cleanupInterval = "1d";
+  # services.snapper.snapshotInterval = "hourly";
 
 }

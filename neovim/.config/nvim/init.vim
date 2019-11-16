@@ -372,6 +372,17 @@ let g:tex_flavor = "latex"
 "Prevents vimtex from concealing latex source code
 let g:tex_conceal = ""
 
+let g:vimtex_compiler_latexmk_engines = {
+        \ '_'                : '-xelatex',
+        \ 'pdflatex'         : '-pdf',
+        \ 'dvipdfex'         : '-pdfdvi',
+        \ 'lualatex'         : '-lualatex',
+        \ 'xelatex'          : '-xelatex',
+        \ 'context (pdftex)' : '-pdf -pdflatex=texexec',
+        \ 'context (luatex)' : '-pdf -pdflatex=context',
+        \ 'context (xetex)'  : '-pdf -pdflatex=''texexec --xtx''',
+        \}
+
 " ====================================================================
 " ====================================================================
 call plug#end()

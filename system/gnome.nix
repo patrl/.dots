@@ -15,7 +15,7 @@ in
     };
   };
 
-  services.packagekit.enable = false;
+  # services.packagekit.enable = false;
 
   programs.gnome-terminal.enable = false;
   programs.gnome-documents.enable = false;
@@ -63,7 +63,6 @@ in
     pkgs.gnome3.gnome-maps
     pkgs.gnome3.gnome-weather
     pkgs.gnome3.baobab
-    pkgs.gnome3.nautilus-sendto
     pkgs.gnome3.gnome-logs
     pkgs.gnome3.gnome-photos
     pkgs.gnome3.gnome-music
