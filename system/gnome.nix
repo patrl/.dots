@@ -65,7 +65,7 @@ in
     pkgs.gnome3.baobab
     pkgs.gnome3.gnome-logs
     pkgs.gnome3.gnome-photos
-    pkgs.gnome3.gnome-music
+    # pkgs.gnome3.gnome-music
     pkgs.gnome3.gnome-online-accounts
     pkgs.gnome3.gnome-online-miners
     pkgs.gnome3.gnome-power-manager

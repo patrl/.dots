@@ -46,5 +46,4 @@ in
       bemenu
     ];
 
-    services.xserver.displayManager.extraSessionFilePackages = [ pkgs.sway ];
   }

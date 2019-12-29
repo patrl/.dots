@@ -59,11 +59,13 @@ in {
   # Select internationalisation properties.
   i18n = {
     # This makes the font readable on a high dpi screen. Note that this is dependent on having installed terminus_font.
-    consoleFont = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
-    consoleKeyMap = "uk";
     defaultLocale = "en_GB.UTF-8";
   };
 
+  console = {
+    font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
+    keyMap = "uk";
+  };
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -71,15 +73,19 @@ in {
   # Pulse
   hardware.pulseaudio = {
     enable = true;
+    package = pkgs.pulseaudioFull;
     support32Bit = true; # need this for steam
-    extraModules = [ pkgs.pulseaudio-modules-bt ];
+#   extraModules = [ pkgs.pulseaudio-modules-bt ]; # I suspected that this was causing breakage
   };
+
 
   # bluetooth support
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = false;
   };
+
+  services.blueman.enable = true;
 
   # brightness support
   hardware.brightnessctl.enable = true;
@@ -123,7 +129,6 @@ in {
     discord
 
     # applets
-    blueman # necessary with a WM
     networkmanagerapplet
     udiskie
     # python27Packages.websocket_client

@@ -27,6 +27,9 @@ zplugin light zdharma/zsh-diff-so-fancy
 zplugin ice from"gh-r" as"program"
 zplugin load junegunn/fzf-bin
 
+zplugin ice from"gh-r" as"program" pick"age/age"
+zplugin load FiloSottile/age
+
 # the official fzf zsh plugin + the fzf-tmux script
 zplugin ice multisrc"shell/{completion,key-bindings}.zsh" pick"bin/fzf-tmux" as"program"
 zplugin light junegunn/fzf
