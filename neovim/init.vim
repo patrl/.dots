@@ -182,7 +182,7 @@ let g:thematic#themes = {
 			\		  },
 			\ }
 "
-let g:thematic#theme_name = 'pencil_lite'
+let g:thematic#theme_name = 'dracula'
 " }}}
 "
 Plug 'ryanoasis/vim-devicons'
@@ -365,7 +365,7 @@ autocmd FileType tex call VimtexPencil()
 "
 Plug 'lervag/vimtex'
 
-let g:vimtex_view_method = 'zathura'
+let g:vimtex_view_general_viewer = 'cmd.exe /C start'
 let g:vimtex_complete_close_braces = 1
 let g:vimtex_complete_recursive_bib = 1
 let g:tex_flavor = "latex"

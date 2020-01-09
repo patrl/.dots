@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     stow
     htop
+    browserpass
 
     (texlive.combine {
       inherit (texlive)
@@ -28,6 +29,7 @@ programs.neovim = {
   extraConfig = builtins.readFile neovim/init.vim;
 };
 
+programs.bat.enable = true;
 
 programs.git = {
   package = pkgs.gitAndTools.gitFull;
@@ -56,4 +58,5 @@ services.gpg-agent = {
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "19.09";
+
 }
