@@ -33,6 +33,10 @@ programs.git = {
   enable = true;
   userName = "Patrick Elliott";
   userEmail = "patrick.d.elliott@gmail.com";
+  signing = {
+    signByDefault = true;
+    key = "1B5E5824F4429D036C8A17517CA109C3974AF5FA";
+  };
 };
 
 services.gpg-agent = {
