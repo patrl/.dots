@@ -8,9 +8,12 @@
     gitAndTools.hub
     exa
     fd
+    ripgrep
     prettyping
     age
     weechat
+
+    nix-prefetch-git
 
     (texlive.combine {
       inherit (texlive)
@@ -35,10 +38,16 @@ programs.broot = {
   enable = true;
 };
 
-programs.bash = {
+programs.zsh = {
+  dotDir = ".config/zsh";
   enable = true;
-  profileExtra = builtins.readFile bash/.profile;
-  initExtra = builtins.readFile bash/.bashrc;
+  enableAutosuggestions = true;
+  enableCompletion = true;
+  autocd = true;
+  envExtra = 
+  ''
+  if [ -e /home/patrl/.nix-profile/etc/profile.d/nix.sh ]; then . /home/patrl/.nix-profile/etc/profile.d/nix.sh; fi
+  '';
   shellAliases = {
     g = "hub";
     git = "hub";
