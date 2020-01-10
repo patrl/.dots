@@ -3,7 +3,6 @@
 {
   home.packages = with pkgs; [
     stow
-    htop
     browserpass
 
     (texlive.combine {
@@ -20,8 +19,21 @@
       })
   ];
 
+programs.bash = {
+  enable = true;
+  profileExtra = builtins.readFile bash/.profile;
+  initExtra = builtins.readFile bash/.bashrc;
+};
+
+programs.htop.enable = true;
+
 programs.password-store = {
   enable = true;
+};
+
+programs.direnv = {
+  enable = true;
+  enableBashIntegration = true;
 };
 
 programs.neovim = {
