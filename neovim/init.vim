@@ -52,19 +52,14 @@ call plug#begin()
 " ====================================================================
 "
 "
-Plug 'tpope/vim-sensible'
 "
 "
-Plug 'junegunn/vim-easy-align'
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-
-"in buffer search
-Plug 'junegunn/vim-slash'
 
 " ====================================================================
 " Appearance
@@ -91,7 +86,6 @@ Plug 'arcticicestudio/nord-vim'
 "
 Plug 'dracula/vim' 
 "
-Plug 'vim-airline/vim-airline'
 " {{{
 let g:airline_powerline_fonts=1
 
@@ -143,7 +137,6 @@ let g:airline#extensions#tabline#enabled = 1
 
 " }}}
 "
-Plug 'vim-airline/vim-airline-themes'
 
 Plug 'reedes/vim-thematic'
 " {{{
@@ -185,11 +178,6 @@ let g:thematic#themes = {
 let g:thematic#theme_name = 'dracula'
 " }}}
 "
-Plug 'ryanoasis/vim-devicons'
-" ====================================================================
-" Startup
-" ====================================================================
-Plug 'mhinz/vim-startify'
 " {{{
 nnoremap <silent> <leader>bh :Startify<CR>
 " }}}
@@ -211,23 +199,18 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "let g:deoplete#sources = {}
 "let g:deoplete#sources._=['omni', 'ultisnips']
 " }}}
-Plug 'ervandew/supertab'
 " {{{
 autocmd FileType tex let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 " }}}
-Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<C-j>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-Plug 'honza/vim-snippets'
 
 " ====================================================================
 " Utilities 
 " ====================================================================
-Plug 'tpope/vim-fugitive'
 " {{{
 nnoremap <silent> <leader>gs :Gstatus<CR>
 " }}}
-Plug 'neomake/neomake'
 " {{{
 " Runs neomake everywhere
 "autocmd! BufWritePost * Neomake
@@ -246,24 +229,13 @@ nnoremap <silent> <Leader>ll :Lines<CR>
 nnoremap <silent> <Leader>lb :BLines<CR>
 "let g:fzf_nvim_statusline = 0
 " }}}
-Plug 'tpope/vim-surround'
-"
-Plug 'scrooloose/nerdtree'
-" {{{
 map <C-n> :NERDTreeToggle<CR>
-" }}}
-"
-Plug 'tpope/vim-commentary'
 "
 " ====================================================================
 " Prose 
 " ====================================================================
-Plug 'junegunn/goyo.vim'
-" {{{
 nnoremap <silent> <leader>Tg :Goyo<cr>
-" }}}
 Plug 'junegunn/limelight.vim'
-" {{{
 nnoremap <silent> <leader>Tl :Limelight!!<cr>
 " }}}
 "
