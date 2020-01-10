@@ -29,6 +29,10 @@ programs.htop.enable = true;
 
 programs.password-store = {
   enable = true;
+  settings = {
+    PASSWORD_STORE_DIR = "/home/patrl/.password-store";
+    PASSWORD_STORE_KEY = "patrick.d.elliott@gmail.com";
+  };
 };
 
 programs.direnv = {
@@ -56,6 +60,10 @@ programs.git = {
 
 services.gpg-agent = {
   enable = true;
+  pinentryFlavor = null;
+  extraConfig = ''
+  pinentry-program /home/patrl/repos/pinentry-wsl-ps1/pinentry-wsl-ps1.sh
+  '';
 };
 
   # Let Home Manager install and manage itself.
