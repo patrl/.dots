@@ -39,7 +39,13 @@ programs.broot = {
 
 programs.alacritty.enable = true;
 
-programs.urxvt.enable = true;
+programs.password-store = {
+  enable = true;
+  settings = {
+    PASSWORD_STORE_DIR = "/home/patrl/.password-store";
+    PASSWORD_STORE_KEY = "patrick.d.elliott@gmail.com";
+  };
+};
 
 programs.browserpass = {
   enable = true;
@@ -124,16 +130,11 @@ programs.fzf = {
     ];
 };
 
-programs.password-store = {
-  enable = true;
-  settings = {
-    PASSWORD_STORE_DIR = "/home/patrl/.password-store";
-    PASSWORD_STORE_KEY = "patrick.d.elliott@gmail.com";
-  };
-};
+
 
 programs.direnv = {
   enable = true;
+  stdlib = builtins.readFile direnv/direnv.conf;
 };
 
 programs.neovim = {
@@ -207,9 +208,19 @@ services.gpg-agent = {
 
   services.emacs.enable = true;
 
-  home.file = {
-    ".direnvrc" = {
-      source = direnv/direnvrc;
+  services.polybar.enable = true;
+
+  services.polybar.config = polybar/polybar.conf;
+
+  services.polybar.script = ''
+  polybar bar &
+'';
+
+  services.network-manager-applet.enable = true;
+
+ home.file = {
+    ".config/alacritty/alacritty.yml" = {
+      source = alacritty/alacritty.yml;
     };
   };
 
