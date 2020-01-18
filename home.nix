@@ -5,7 +5,6 @@ let
 in {
   home.packages = with pkgs; [
     stow
-    browserpass
     gitAndTools.diff-so-fancy
     gitAndTools.hub
     exa
@@ -16,22 +15,17 @@ in {
     weechat
     trash-cli
     nnn
-    nur.repos.kalbasit.nixify
+
+    lxappearance
 
     nix-prefetch-git
 
-    (texlive.combine {
-      inherit (texlive)
-         collection-basic
-         collection-bibtexextra
-         collection-binextra
-         collection-xetex
-         collection-luatex
-         collection-latexrecommended
-         collection-latexextra
-         collection-langenglish
-         collection-latex;
-      })
+    glxinfo
+    dmenu
+    sxhkd
+    polybar
+    pciutils
+    xorg.xdpyinfo
   ];
 
   home.sessionVariables = {
@@ -41,6 +35,27 @@ in {
 
 programs.broot = {
   enable = true;
+};
+
+programs.alacritty.enable = true;
+
+programs.urxvt.enable = true;
+
+programs.browserpass = {
+  enable = true;
+  browsers = [ "firefox" ];
+};
+
+programs.firefox = {
+  enable = true;
+};
+
+nixpkgs.config.allowUnfree = true;
+
+xsession.pointerCursor = {
+  name = "Vanilla-DMZ";
+  package = pkgs.vanilla-dmz;
+  size = 128;
 };
 
 programs.zsh = {
@@ -64,6 +79,9 @@ programs.zsh = {
   path+=('/home/patrl/.emacs.d/bin')
 
   if [ -e /home/patrl/.nix-profile/etc/profile.d/nix.sh ]; then . /home/patrl/.nix-profile/etc/profile.d/nix.sh; fi
+
+
+  if [ -e /home/patrl/.config/broot/launcher/bash/br/1 ]; then . /home/patrl/.config/broot/launcher/bash/br/1; fi
   '';
   shellAliases = {
     g = "hub";
@@ -91,7 +109,6 @@ programs.zsh = {
 
 programs.emacs = {
   enable = true;
-  package = pkgs.emacs26-nox;
 };
 
 programs.htop.enable = true;
@@ -169,12 +186,10 @@ programs.git = {
     };
 };
 
+programs.gpg.enable = true;
+
 services.gpg-agent = {
   enable = true;
-  pinentryFlavor = null;
-  extraConfig = ''
-  pinentry-program /home/patrl/repos/pinentry-wsl-ps1/pinentry-wsl-ps1.sh
-  '';
 };
 
   # Let Home Manager install and manage itself.
@@ -189,6 +204,8 @@ services.gpg-agent = {
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "19.09";
+
+  services.emacs.enable = true;
 
   home.file = {
     ".direnvrc" = {
