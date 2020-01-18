@@ -10,6 +10,9 @@
       ./wolfe-hardware.nix
     ];
 
+  boot.extraModprobeConfig = ''
+    options i915 enable dpcd_backlight=1
+    '';
   boot.initrd.availableKernelModules = [ "battery" ];
   boot.kernelPackages = pkgs.linuxPackages_latest; # use the latest kernel
   boot.blacklistedKernelModules = [ "nouveau" ]; # blacklist the opensource nvidia driver
@@ -77,15 +80,11 @@ environment.etc = {
     monitorSection =  ''
       DisplaySize 344 193
       '';
-    displayManager.lightdm = {
+    displayManager.sddm = {
       enable = true;
-      greeters.mini = {
-        enable = true;
-        user = "patrl";
-        extraConfig = builtins.readFile mini-greeter/mini-greeter.conf;
-      };
+      enableHidpi = true;
     };
-    displayManager.defaultSession = "none+bspwm";
+    displayManager.defaultSession = "bspwm";
     desktopManager.xterm.enable = false;
     enable = true;
     layout = "us";
@@ -93,7 +92,6 @@ environment.etc = {
     libinput.enable = true;
     windowManager.bspwm = {
       enable = true;
-      sxhkd.package = pkgs.sxhkd;
     };
     videoDrivers = [ "intel" ]; # change this to "nvidia" to use the nvidia card
   };
@@ -137,11 +135,12 @@ environment.etc = {
   environment.systemPackages = with pkgs; [
     wget
     vim
-    zsh
     git
     keybase-gui
     vanilla-dmz
   ];
+
+  programs.zsh.enable = true;
 
 
   users.extraUsers.patrl = {
@@ -182,6 +181,8 @@ environment.etc = {
     powerOnBoot = false;
     package = pkgs.bluezFull;
   };
+
+  programs.ssh.askPassword = "";
 
   services.compton.enable = true;
   services.compton.shadow = true;
