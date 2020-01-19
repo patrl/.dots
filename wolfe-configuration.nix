@@ -10,9 +10,6 @@
       ./wolfe-hardware.nix
     ];
 
-  boot.extraModprobeConfig = ''
-    options i915 enable dpcd_backlight=1
-    '';
   boot.initrd.availableKernelModules = [ "battery" ];
   boot.kernelPackages = pkgs.linuxPackages_latest; # use the latest kernel
   boot.blacklistedKernelModules = [ "nouveau" ]; # blacklist the opensource nvidia driver
@@ -41,6 +38,8 @@
     enableUnstable = true;
     requestEncryptionCredentials = true;
   };
+
+  services.dbus.packages = with pkgs; [ gnome3.dconf ];
 
   services.zfs = {
     trim.enable = true; # good for ssds!
@@ -80,11 +79,15 @@ environment.etc = {
     monitorSection =  ''
       DisplaySize 344 193
       '';
-    displayManager.sddm = {
+    displayManager.lightdm = {
       enable = true;
-      enableHidpi = true;
+      greeters.mini = {
+        enable = true;
+        user = "patrl";
+        extraConfig = (builtins.readFile mini-greeter/mini-greeter.conf);
+      };
     };
-    displayManager.defaultSession = "bspwm";
+    displayManager.defaultSession = "none+bspwm";
     desktopManager.xterm.enable = false;
     enable = true;
     layout = "us";
@@ -138,6 +141,7 @@ environment.etc = {
     git
     keybase-gui
     vanilla-dmz
+    hicolor-icon-theme
   ];
 
   programs.zsh.enable = true;

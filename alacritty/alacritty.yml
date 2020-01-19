@@ -6,20 +6,20 @@ window:
     y: 10
   decorations: none
 
-font:
-  normal:
-    family: 'SF Mono'
-    style: Regular
-  bold:
-    family: 'SF Mono'
-    style: Bold
-  italic:
-    family: 'SF Mono'
-    style: Italic
-  bold_italic:
-    family: 'SF Mono'
-    style: Bold Italic
-  size: 12.0
+# font:
+#   normal:
+#     family: 'SF Mono'
+#     style: Regular
+#   bold:
+#     family: 'SF Mono'
+#     style: Bold
+#   italic:
+#     family: 'SF Mono'
+#     style: Italic
+#   bold_italic:
+#     family: 'SF Mono'
+#     style: Bold Italic
+#   size: 12.0
 
 # Colors (Dracula)
 colors:

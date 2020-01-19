@@ -15,6 +15,9 @@ in {
     weechat
     trash-cli
     nnn
+    unzip
+
+    powertop
 
     lxappearance
 
@@ -22,19 +25,25 @@ in {
 
     glxinfo
     dmenu
-    sxhkd
-    polybar
-    pciutils
-    xorg.xdpyinfo
+
+    haskellPackages.Agda
+
+    dropbox
   ];
 
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = "emacsclient -c";
     MANPAGER = "nvim -c 'set ft=man' -";
   };
 
 programs.broot = {
   enable = true;
+};
+
+programs.rofi = {
+  enable = true;
+  theme = "sidebar";
+  font = "SF Mono 36";
 };
 
 programs.alacritty.enable = true;
@@ -85,9 +94,6 @@ programs.zsh = {
   path+=('/home/patrl/.emacs.d/bin')
 
   if [ -e /home/patrl/.nix-profile/etc/profile.d/nix.sh ]; then . /home/patrl/.nix-profile/etc/profile.d/nix.sh; fi
-
-
-  if [ -e /home/patrl/.config/broot/launcher/bash/br/1 ]; then . /home/patrl/.config/broot/launcher/bash/br/1; fi
   '';
   shellAliases = {
     g = "hub";
@@ -208,19 +214,36 @@ services.gpg-agent = {
 
   services.emacs.enable = true;
 
-  services.polybar.enable = true;
-
-  services.polybar.config = polybar/polybar.conf;
-
-  services.polybar.script = ''
-  polybar bar &
-'';
+  services.polybar = {
+    enable = true;
+    config = polybar/polybar.conf;
+    script = ''
+    polybar bar &
+    '';
+  };
 
   services.network-manager-applet.enable = true;
+
+  programs.zathura.enable = true;
 
  home.file = {
     ".config/alacritty/alacritty.yml" = {
       source = alacritty/alacritty.yml;
+    };
+    ".config/sxhkd/sxhkdrc" = {
+      source = sxhkd/sxhkdrc;
+    };
+  };
+
+  gtk = {
+    enable = true;
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus-Dark";
+    };
+    theme = {
+      package = pkgs.arc-theme;
+      name = "Arc-Dark";
     };
   };
 
