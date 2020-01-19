@@ -10,18 +10,103 @@
       ./wolfe-hardware.nix
     ];
 
-  boot.initrd.availableKernelModules = [ "battery" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest; # use the latest kernel
-  boot.blacklistedKernelModules = [ "nouveau" ]; # blacklist the opensource nvidia driver
+  ###########
+  # general #
+  ###########
 
-  hardware.logitech = {
-    enable = true;
-    enableGraphical = true;
-  };
+  nixpkgs.config.allowUnfree = true;
 
+  # the following is currently needed for cachix on nixos
+  nix.trustedUsers = [ "root" "patrl" ];
+
+
+
+
+  ###########################
+  # hardware specific fixes #
+  ###########################
+
+  powerManagement.powertop.enable = true;
+
+  hardware.enableAllFirmware = true; # generally a good idea on newer hardware
+
+  hardware.cpu.intel.updateMicrocode = true;
+
+  # recognise trackpoint on thinkpad x1 extreme gen 2
   hardware.trackpoint.device = "TPPS/2 Elan TrackPoint";
 
-  hardware.enableAllFirmware = true;
+  # fixes a bug with battery reporting (see: https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_X1_Extreme_(Gen_2))
+  boot.initrd.availableKernelModules = [ "battery" ];
+
+  # support for logitech mx ergo
+  hardware.logitech = {
+    enable = true;
+    enableGraphical = true; # TODO this installs solaar, which doesn't currently work
+  };
+
+  boot.kernelPackages = pkgs.linuxPackages_latest; # the latest kernel is necessary for the wifi to work
+
+  # fixes intel cpu throttling
+  services.throttled.enable = true;
+
+
+
+
+  #############
+  # bluetooth #
+  #############
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+    package = pkgs.bluezFull;
+  };
+
+  services.blueman.enable = true;
+
+
+
+
+  #########
+  # audio #
+  #########
+
+  hardware.pulseaudio = {
+    enable = true;
+    package = pkgs.pulseaudioFull;
+    support32Bit = true; # need this for steam
+  };
+
+
+
+
+  ##########
+  # nvidia #
+  ##########
+
+  boot.blacklistedKernelModules = [ "nouveau" ]; # blacklist the opensource nvidia driver. This will lead to kernel panics
+
+  # the following settings are all necessary for nvidia prime to work.
+  # I've disabled the card however until prime offloading is available in nixos.
+  hardware.nvidia = {
+    optimus_prime.enable = true;
+    modesetting.enable = true;
+    optimus_prime.nvidiaBusId = "PCI:1:0:0";
+    intelBusId = "PCI:0:2:0";
+  };
+
+  services.xserver.videoDrivers = [ "intel" ]; # change this to "nvidia" to use the nvidia card
+  # services.xserver.videoDrivers = [ "nvidia" ];
+
+  # completely power off nvidia card
+  hardware.nvidiaOptimus.disable = true;
+
+
+
+
+  ###############
+  # boot loader #
+  ###############
 
   boot.loader.systemd-boot = {
     enable = true;
@@ -32,6 +117,12 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
 
+
+
+  #######
+  # zfs #
+  #######
+
   boot.supportedFilesystems = [ "zfs" ];
 
   boot.zfs = {
@@ -39,13 +130,18 @@
     requestEncryptionCredentials = true;
   };
 
-  services.dbus.packages = with pkgs; [ gnome3.dconf ];
-
   services.zfs = {
     trim.enable = true; # good for ssds!
     autoScrub.enable = true;
     autoSnapshot.enable = true;
   };
+
+
+
+
+  #########
+  # fonts #
+  #########
 
   fonts = {
     fontconfig.dpi = 192;
@@ -55,24 +151,12 @@
     ];
   };
 
-environment.etc = {
-    "gtk-2.0/gtkrc".text = ''
-      gtk-cursor-theme-name = Vanilla-DMZ
-      gtk-cursor-theme-size = 48
-    '';
-    "gtk3.0/settings.ini".text = ''
-      gtk-cursor-theme-name = Vanilla-DMZ
-      gtk-cursor-theme-size = 48
-    '';
-  };
 
-  powerManagement.powertop.enable = true;
 
-  hardware.pulseaudio = {
-    enable = true;
-    package = pkgs.pulseaudioFull;
-    support32Bit = true; # need this for steam
-  };
+
+  ########
+  # xorg #
+  ########
 
   services.xserver = {
     # correctly set the display dimensions for the thinkpad x1 extreme gen 2
@@ -88,6 +172,11 @@ environment.etc = {
       };
     };
     displayManager.defaultSession = "none+bspwm";
+    displayManager.setupCommands = ''
+      light-locker --lock-on-suspend --lock-on-lid --lock-after-screensaver=0
+
+      xset dpms 60 360 800
+      '';
     desktopManager.xterm.enable = false;
     enable = true;
     layout = "us";
@@ -96,18 +185,38 @@ environment.etc = {
     windowManager.bspwm = {
       enable = true;
     };
-    videoDrivers = [ "intel" ]; # change this to "nvidia" to use the nvidia card
   };
 
-  hardware.nvidia = {
-    optimus_prime.enable = true;
-    modesetting.enable = true;
-    optimus_prime.nvidiaBusId = "PCI:1:0:0";
-    intelBusId = "PCI:0:2:0";
+  services.compton.enable = true;
+  services.compton.shadow = true;
+  services.compton.inactiveOpacity = "0.8";
+
+  services.redshift.enable = true;
+
+  location = {
+    latitude = 42.4;
+    longitude = 71.1;
   };
 
+  environment.etc = {
+    "gtk-2.0/gtkrc".text = ''
+      gtk-cursor-theme-name = Vanilla-DMZ
+      gtk-cursor-theme-size = 48
+    '';
+    "gtk3.0/settings.ini".text = ''
+      gtk-cursor-theme-name = Vanilla-DMZ
+      gtk-cursor-theme-size = 48
+    '';
+  };
 
-  nixpkgs.config.allowUnfree = true;
+  services.dbus.packages = with pkgs; [ gnome3.dconf ];
+
+
+
+
+  ##############
+  # networking #
+  ##############
 
   networking = {
     networkmanager.enable = true;
@@ -124,6 +233,13 @@ environment.etc = {
     firewall.enable = true;
   };
 
+
+
+
+  ########################
+  # internationalisation #
+  ########################
+
   i18n.defaultLocale = "en_US.UTF-8";
 
   console = {
@@ -132,6 +248,13 @@ environment.etc = {
   };
 
   time.timeZone = "America/New_York";
+
+
+
+
+  ############
+  # packages #
+  ############
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -142,10 +265,18 @@ environment.etc = {
     keybase-gui
     vanilla-dmz
     hicolor-icon-theme
+    lightlocker
   ];
 
-  programs.zsh.enable = true;
+  services.keybase.enable = true;
+  services.kbfs.enable = true;
 
+
+
+
+  ##############
+  # user space #
+  ##############
 
   users.extraUsers.patrl = {
     description = "Patrick Elliott";
@@ -160,7 +291,16 @@ environment.etc = {
 
   security.sudo.wheelNeedsPassword = false;
 
-  hardware.cpu.intel.updateMicrocode = true;
+  programs.zsh.enable = true;
+
+  programs.ssh.askPassword = "";
+
+
+
+
+  ####################
+  # DON'T TOUCH THIS #
+  ####################
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
@@ -168,30 +308,5 @@ environment.etc = {
   # should.
   system.stateVersion = "19.09"; # Did you read the comment?
 
-  services.throttled.enable = true;
-
-  services.redshift.enable = true;
-
-  location = {
-    latitude = 42.4;
-    longitude = 71.1;
-  };
-
-  services.keybase.enable = true;
-  services.kbfs.enable = true;
-
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = false;
-    package = pkgs.bluezFull;
-  };
-
-  programs.ssh.askPassword = "";
-
-  services.compton.enable = true;
-  services.compton.shadow = true;
-  services.compton.inactiveOpacity = "0.8";
-
-  services.blueman.enable = true;
 
 }

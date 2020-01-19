@@ -15,7 +15,7 @@ super + e
 	emacsclient -c
 
 super + {_,shift + }e
-	emacsclient -a '' -c -e '(+eshell/open-fullscreen ())'
+	emacsclient -a '' -c -e '(+eshell/frame ())'
 
 super + w
 	firefox

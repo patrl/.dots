@@ -37,7 +37,7 @@ vnoremap <C-S> <C-C>:update<CR>
 inoremap <C-S> <C-O>:update<CR>
 
 " Unified color scheme (default: dark)
-colo seoul256
+colo dracula 
 let g:airline_theme='zenburn'
 
 " alignment
