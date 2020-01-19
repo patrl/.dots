@@ -172,16 +172,19 @@
       };
     };
     displayManager.defaultSession = "none+bspwm";
-    displayManager.setupCommands = ''
-      light-locker --lock-on-suspend --lock-on-lid --lock-after-screensaver=0
+    displayManager.sessionCommands = ''
+     light-locker --lock-on-suspend --lock-on-lid --lock-after-screensaver=0 &
 
-      xset dpms 60 360 800
-      '';
+     xset dpms 60 360 800 &
+     '';
     desktopManager.xterm.enable = false;
     enable = true;
     layout = "us";
     xkbOptions = "eurosign:e";
-    libinput.enable = true;
+    libinput = {
+      enable = true;
+      accelSpeed= "0.5"; # the trackpad by default is way too insensitia
+    };
     windowManager.bspwm = {
       enable = true;
     };
@@ -190,13 +193,6 @@
   services.compton.enable = true;
   services.compton.shadow = true;
   services.compton.inactiveOpacity = "0.8";
-
-  services.redshift.enable = true;
-
-  location = {
-    latitude = 42.4;
-    longitude = 71.1;
-  };
 
   environment.etc = {
     "gtk-2.0/gtkrc".text = ''

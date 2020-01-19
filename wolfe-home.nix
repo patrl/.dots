@@ -172,6 +172,13 @@
   ##############
   # appearance #
   ##############
+  services.redshift = {
+    enable = true;
+    provider = "manual";
+    latitude = "42.4";
+    longitude = "71.1";
+    tray = true;
+  };
 
   # wallpaper service (uses feh)
   services.random-background = {
