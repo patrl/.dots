@@ -252,8 +252,8 @@
   programs.rofi = {
     enable = true;
     theme = "sidebar";
-    font = "SF Mono 36";
-    fullscreen = true;
+    font = "IBM Plex Sans 36";
+    # fullscreen = true;
   };
 
   # super fast terminal
