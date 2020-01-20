@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  plugins = pkgs.vimPlugins;
+  plugins = pkgs.vimPlugins // pkgs.callPackage ./custom-plugins.nix {};
 in {
   enable = true;
   viAlias = true;
@@ -10,13 +10,13 @@ in {
     customRC = builtins.readFile ./init.vim;
     plug.plugins = with plugins; [
       # theme
-      vim-sensible
+      nnn
+      vim-sensible # no need to configure this
       vim-easy-align
       vim-slash
       vim-devicons
       vim-startify
       vim-nix
-      supertab
       ultisnips
       vim-snippets
       vim-fugitive
@@ -26,7 +26,10 @@ in {
       goyo
       fzfWrapper
       fzf-vim
-      vim
+      vim # this is the (incorrectly named!) dracula theme
+      coc-nvim
+      vimtex
+      coc-vimtex
     ];
   };
 }
