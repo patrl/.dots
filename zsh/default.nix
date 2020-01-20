@@ -27,8 +27,9 @@
       src = pkgs.fetchFromGitHub {
         owner = "sindresorhus";
         repo = "pure";
-        rev = "v1.11.0";
-        sha256 = "0nzvb5iqyn3fv9z5xba850mxphxmnsiq3wxm1rclzffislm8ml1j";
+        rev = "957e07101a1c14502d32a25d9fd327c83098bf3c";
+        # date = 2020-01-07T23:52:01+07:00;
+        sha256 = "0dmr0b4x903r28w74b8w0vdgmlckhi9n31k26ld24hh2s74g57bk";
       };
      }
     ];
