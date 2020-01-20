@@ -10,11 +10,9 @@ in {
     customRC = builtins.readFile ./init.vim;
     plug.plugins = with plugins; [
       # theme
-      vim-airline-themes
       vim-sensible
       vim-easy-align
       vim-slash
-      vim-airline
       vim-devicons
       vim-startify
       vim-nix
