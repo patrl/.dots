@@ -26,6 +26,8 @@
   # hardware specific fixes #
   ###########################
 
+  services.upower.enable = true; # this is necessary for the system to automatically suspend when the battery is low
+
   powerManagement.powertop.enable = true;
 
   hardware.enableAllFirmware = true; # generally a good idea on newer hardware
