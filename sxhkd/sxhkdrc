@@ -1,5 +1,5 @@
 XF86MonBrightness{Up,Down}
-	xbacklight {-inc,-dec} 20
+	 ~/.dots/scripts/brightness.sh {+,-} eDP1 0.1
 
 XF86Audio{Raise,Lower}Volume
 	pactl set-sink-volume 0 {+,-}10%
@@ -9,7 +9,7 @@ XF86AudioMute
 
 # terminal emulator
 super + Return
-    alacritty
+	alacritty
 
 super + e
 	emacsclient -c
@@ -20,8 +20,8 @@ super + {_,shift + }e
 super + w
 	firefox
 
-# super + b
-	 # st -f "Input Mono:size=11:antialias=true:autohint=off" -c Ranger -e ranger
+super + {_,shift + }b
+	 alacritty -c nnn -e n
 
 # super + v
 # 	 st -f "IBM Plex Mono:size=11:antialias=true:autohint=off" -c Nvim -e nvim
@@ -29,9 +29,12 @@ super + w
 # super + p
 # 	rofi-pass
 
-# program launcher
 super + space
  	rofi -show drun -modi drun,run,window -show-icons -sidebar-mode -terminal alacritty -display-run " " -display-drun "λ " -display-window ""
+
+# super + {_,shift + }space
+#    polybar-msg cmd toggle
+
 
 # make sxhkd reload its configuration files:
 super + Escape
