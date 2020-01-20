@@ -151,6 +151,11 @@
     fonts = with pkgs; [
       ibm-plex
     ];
+    fontconfig.defaultFonts = {
+      monospace = [ "IBM Plex Mono" "DejaVu Sans Mono" ];
+      sansSerif = [ "IBM Plex Sans" "DejaVu Sans"];
+      serif = [ "IBM Plex Serif" "DejaVu Serif"];
+    };
   };
 
 
