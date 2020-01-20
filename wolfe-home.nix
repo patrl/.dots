@@ -22,6 +22,12 @@
     ".config/sxhkd/sxhkdrc" = {
       source = sxhkd/sxhkdrc;
     };
+    ".config/polybar/launch.sh" = {
+      source = polybar/launch.sh;
+    };
+    ".config/polybar/config" = {
+      source = polybar/polybar.conf;
+    };
     ".local/share/applications/mimeapps.list" = {
       source = mimeapps/mimeapps.list;
     };
@@ -116,6 +122,7 @@
     rofi-pass
     rofi-systemd
     pavucontrol
+    polybar
 
 
 
@@ -236,14 +243,6 @@
   programs.mpv.enable = true;
 
   programs.zathura.enable = true; # the one true pdf reader
-
-  services.polybar = {
-    enable = true;
-    config = polybar/polybar.conf;
-    script = ''
-      polybar bar &
-    '';
-  };
 
   services.network-manager-applet.enable = true;
 
