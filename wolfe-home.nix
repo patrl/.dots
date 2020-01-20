@@ -22,6 +22,12 @@
     ".config/sxhkd/sxhkdrc" = {
       source = sxhkd/sxhkdrc;
     };
+    ".local/share/applications/mimeapps.list" = {
+      source = mimeapps/mimeapps.list;
+    };
+    ".local/share/applications/emacs-dired.desktop" = {
+      source = mimeapps/emacs-dired.desktop;
+    };
   };
 
   nixpkgs.config.allowUnfree = true; # software doesn't grow on trees
@@ -86,6 +92,14 @@
     gtypist
     rclone
     rsync
+    magic-wormhole
+    ssb-patchwork
+    bc # cli calc
+    figlet
+    neofetch
+    feh
+    maim
+    xorg.xprop
 
 
 
@@ -100,6 +114,7 @@
     discord
     zotero
     rofi-pass
+    rofi-systemd
     pavucontrol
 
 
@@ -114,6 +129,14 @@
     idris # idris
     rustup # rust
     racket # racket
+
+
+
+    #########
+    # fonts #
+    #########
+
+    cascadia-code
 
   ];
 
@@ -178,7 +201,13 @@
     latitude = "42.4";
     longitude = "71.1";
     tray = true;
+    brightness = {
+      day = "0.5";
+      night = "0.5";
+    };
   };
+
+  fonts.fontconfig.enable = true;
 
   # wallpaper service (uses feh)
   services.random-background = {
@@ -225,12 +254,36 @@
     enable = true;
     theme = "sidebar";
     font = "SF Mono 36";
+    fullscreen = true;
   };
 
   # super fast terminal
   programs.alacritty.enable = true;
 
   programs.firefox.enable = true;
+
+  systemd.user.services.dropbox = {
+    Unit = {
+      Description = "Dropbox";
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+    sessionVariables = {
+      QT_PLUGIN_PATH = "/run/current-system/sw/" + pkgs.qt5.qtbase.qtPluginPrefix;
+      QML2_IMPORT_PATH = "/run/current-system/sw/" + pkgs.qt5.qtbase.qtQmlPrefix;
+    };
+    Service = {
+      ExecStart = "${pkgs.dropbox.out}/bin/dropbox";
+      ExecReload = "${pkgs.coreutils.out}/bin/kill -HUP $MAINPID";
+      KillMode = "control-group"; # upstream recommends process
+      Restart = "on-failure";
+      PrivateTmp = true;
+      ProtectSystem = "full";
+      Nice = 10;
+    };
+  };
+
 
 
 
