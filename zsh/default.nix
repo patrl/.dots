@@ -6,22 +6,8 @@
   enableAutosuggestions = true;
   enableCompletion = true;
   autocd = true;
-  initExtra =
-  ''
-  export NNN_TRASH=1 # nnn trashes files to the desktop Trash
-  export NNN_TMPFILE="/tmp/nnn"
-  export NNN_USE_EDITOR=1
-  export NNN_OPENER=mimeopen
-
-  export PURE_PROMPT_SYMBOL="λ"
-  export PURE_PROMPT_VICMD_SYMBOL="ν"
-  '';
-  envExtra =
-  ''
-  path+=('/home/patrl/.emacs.d/bin')
-
-  if [ -e /home/patrl/.nix-profile/etc/profile.d/nix.sh ]; then . /home/patrl/.nix-profile/etc/profile.d/nix.sh; fi
-  '';
+  initExtra = ( builtins.readFile ./initExtra.zsh );
+  envExtra = ( builtins.readFile ./envExtra.zsh );
   shellAliases = {
     g = "hub";
     git = "hub";
@@ -33,7 +19,7 @@
     ll = "exa -l";
     llt = "exa -T";
     llfu = "exa -bghHliS --git";
-    prev = "fzf --preview \"bat --color always {}\"";
+    prev = ''fzf --preview "bat --color always {}"'';
    };
    plugins = [
      {
