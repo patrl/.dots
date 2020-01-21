@@ -19,16 +19,9 @@ zplugin light zsh-users/zsh-autosuggestions
 zplugin ice wait"0" atinit"zpcompinit; zpcdreplay"
 zplugin light zdharma/fast-syntax-highlighting
 
-# make git diffs fancy
-zplugin ice wait"2" lucid as"program" pick"bin/git-dsf"
-zplugin light zdharma/zsh-diff-so-fancy
-
 # fzf (this one is uber-important to my workflow!)
 zplugin ice from"gh-r" as"program"
 zplugin load junegunn/fzf-bin
-
-zplugin ice from"gh-r" as"program" pick"age/age"
-zplugin load FiloSottile/age
 
 # the official fzf zsh plugin + the fzf-tmux script
 zplugin ice multisrc"shell/{completion,key-bindings}.zsh" pick"bin/fzf-tmux" as"program"
@@ -51,9 +44,6 @@ export FZF_DEFAULT_OPTS='
   --color=fg:#f8f8f2,header:#ff5555,info:#ff5555,pointer:#50fa7b
   --color=marker:#ff5555,fg+:#f8f8f2,prompt:#50fa7b,hl+:#44475a
 '
-
-zplugin ice pick"prettyping" as"program"
-zplugin load denilsonsa/prettyping
 
 zplugin ice as"program" cp"src/capture.sh -> capture" pick"capture"
 zplugin load buhman/capture

@@ -121,7 +121,6 @@ in {
 
     # pdf
     evince
-    zathura
     xournal # for signing and annotations
 
 
@@ -179,7 +178,6 @@ in {
     # unstable.love_11
 
     # file manager
-    ranger
     libcaca
 
     # dependencies for `capture:`
@@ -187,16 +185,8 @@ in {
     ffmpeg
 
     # cli tools
-    bat # cat clone
-    fd # find clone
-    ripgrep # grep clone
-    exa # ls clone
     # unstable.fzf # fuzzy finding
-    stow # manage sym-links
-    tmux # multiplexer
-    htop # process monitor
     scrot # screenshots
-    gtkpod
 
     # archive management
     zip
@@ -207,13 +197,8 @@ in {
     subversion
     gitAndTools.hub
     gitAndTools.gitFull
-    gitAndTools.git-annex
     lsof
     gist
-
-    # password management
-    pass
-    pass-otp
 
     # nix tools
     nix-prefetch-git
@@ -228,18 +213,11 @@ in {
     pinentry-curses
 
     imagemagick
-    gtypist
     wget
     libqrencode
     zbar
-    rclone
-    trash-cli
-    direnv
     perl528Packages.FileMimeInfo
 
-    # file manager
-    nnn
-    # unstable.ranger
   ];
 
   # environment.etc = {
@@ -253,8 +231,6 @@ in {
   #   '';
   # };
   #
-  programs.gnupg.agent.enable = true;
-  programs.gnupg.agent.enableSSHSupport = true;
   programs.ssh.startAgent = false;
 
 

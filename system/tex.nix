@@ -4,7 +4,6 @@
     environment.systemPackages = with pkgs; [
       # should be interesting to try out the following:
       python27Packages.pygments
-      # unstable.biber # FIXME throws a perl error. See https://nuget.pkg.github.com/NixOS/nixpkgs/issues/61520
       biber
       (texlive.combine {
         inherit (texlive)
