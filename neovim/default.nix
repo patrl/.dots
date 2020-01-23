@@ -30,6 +30,7 @@ in {
       coc-nvim
       vimtex
       coc-vimtex
+      direnv-vim
     ];
   };
 }
