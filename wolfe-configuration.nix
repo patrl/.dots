@@ -26,8 +26,9 @@
   # hardware specific fixes #
   ###########################
 
+  powerManagement.enable = true; # this is the default setting
   services.upower.enable = true; # this is necessary for the system to automatically suspend when the battery is low
-
+  systemd.services.upower.enable = true;
   powerManagement.powertop.enable = true;
 
   hardware.enableAllFirmware = true; # generally a good idea on newer hardware
@@ -91,17 +92,17 @@
   # the following settings are all necessary for nvidia prime to work.
   # I've disabled the card however until prime offloading is available in nixos.
   hardware.nvidia = {
-    optimus_prime.enable = true;
+    optimus_prime = {
+      enable = true;
+      nvidiaBusId = "PCI:1:0:0";
+      intelBusId = "PCI:0:2:0";
+    };
     modesetting.enable = true;
-    optimus_prime.nvidiaBusId = "PCI:1:0:0";
-    intelBusId = "PCI:0:2:0";
   };
 
   services.xserver.videoDrivers = [ "intel" ]; # change this to "nvidia" to use the nvidia card
-  # services.xserver.videoDrivers = [ "nvidia" ];
 
-  # completely power off nvidia card
-  hardware.nvidiaOptimus.disable = true;
+  # hardware.nvidiaOptimus.disable = true;
 
 
 
@@ -194,6 +195,7 @@
     };
     windowManager.bspwm = {
       enable = true;
+      configFile = bspwm/bspwmrc;
     };
   };
 
