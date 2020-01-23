@@ -123,20 +123,24 @@
     rofi-systemd
     pavucontrol
     polybar
-
-
+    skype
 
 
     #############
     # languages #
     #############
 
-    haskellPackages.Agda # useless but cool
+    # agda.agdawithPackages (p: [ p.standard-library ])
     coq # coq
     idris # idris
     rustup # rust
     racket # racket
-
+    nodejs # js
+    # (import (builtins.fetchTarball "https://github.com/hercules-ci/ghcide-nix/tarball/master") {}).ghcide-ghc865
+    (pkgs.haskell.packages.ghc865.ghcWithPackages (self : [
+	    self.cabal-install
+    ]))
+    haskellPackages.Agda
 
 
     #########
@@ -196,6 +200,9 @@
   # a spicy hot file manager
   programs.broot.enable = true;
 
+  programs.beets = {
+    enable = true;
+  }; # TODO get library and directory settings working properly, pointing at keybase
 
 
 
