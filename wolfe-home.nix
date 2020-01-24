@@ -24,6 +24,7 @@
     };
     ".config/polybar/launch.sh" = {
       source = polybar/launch.sh;
+      executable = true;
     };
     ".config/polybar/config" = {
       source = polybar/polybar.conf;
@@ -107,6 +108,7 @@
     maim
     xorg.xprop
     file # need this for the nnn plugin nuke
+    fd # supercharged find
 
 
 
