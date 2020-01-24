@@ -106,6 +106,7 @@
     feh
     maim
     xorg.xprop
+    file # need this for the nnn plugin nuke
 
 
 
