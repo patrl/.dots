@@ -26,26 +26,28 @@
   # hardware specific fixes #
   ###########################
 
-  powerManagement.enable = true; # this is the default setting
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+  }; # this is the default setting
+
   services.upower.enable = true; # this is necessary for the system to automatically suspend when the battery is low
   systemd.services.upower.enable = true;
-  powerManagement.powertop.enable = true;
 
-  hardware.enableAllFirmware = true; # generally a good idea on newer hardware
-
-  hardware.cpu.intel.updateMicrocode = true;
-
-  # recognise trackpoint on thinkpad x1 extreme gen 2
-  hardware.trackpoint.device = "TPPS/2 Elan TrackPoint";
+  hardware = {
+    enableAllFirmware = true; # generally a good idea on newer hardware
+    cpu.intel.updateMicrocode = true;
+    # recognise trackpoint on thinkpad x1 extreme gen 2
+    trackpoint.device = "TPPS/2 Elan TrackPoint";
+    # support for logitech mx ergo
+    logitech = {
+      enable = true;
+      enableGraphical = true; # TODO this installs solaar, which doesn't currently work
+    };
+  };
 
   # fixes a bug with battery reporting (see: https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_X1_Extreme_(Gen_2))
   boot.initrd.availableKernelModules = [ "battery" ];
-
-  # support for logitech mx ergo
-  hardware.logitech = {
-    enable = true;
-    enableGraphical = true; # TODO this installs solaar, which doesn't currently work
-  };
 
   boot.kernelPackages = pkgs.linuxPackages_latest; # the latest kernel is necessary for the wifi to work
 
@@ -180,6 +182,7 @@
       };
     };
     displayManager.defaultSession = "none+bspwm";
+    # the set line makes the screen turn off in 60, sleep in 360, and hibernate in 800.
     displayManager.sessionCommands = ''
      light-locker --lock-on-suspend --lock-on-lid --lock-after-screensaver=0 &
 
@@ -191,7 +194,7 @@
     xkbOptions = "eurosign:e";
     libinput = {
       enable = true;
-      accelSpeed= "0.5"; # the trackpad by default is way too insensitia
+      accelSpeed= "0.5"; # the trackpad by default is way too insensitive
     };
     windowManager.bspwm = {
       enable = true;
@@ -199,9 +202,13 @@
     };
   };
 
-  services.compton.enable = true;
-  services.compton.shadow = true;
-  services.compton.inactiveOpacity = "0.8";
+  services.compton = {
+    enable = true;
+    shadow = true;
+    backend = "glx";
+    inactiveOpacity = "0.8";
+    shadowExclude = [ "class_g = 'Firefox' && argb" ];
+  };
 
   environment.etc = {
     "gtk-2.0/gtkrc".text = ''
