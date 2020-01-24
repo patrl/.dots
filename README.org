@@ -1,0 +1,7 @@
+#+TITLE: README
+#+DATE:    January 24, 2020
+
+Declarative dots for NixOS and WSL2 managed via the [[https://nixos.org/nix/][~nix~]] package manager and [[https://github.com/rycee/home-manager][~home-manager~]].
+
+- ~wolfe~ :: NixOS on an encrypted zfs root on a Thinkpad X1 Extreme (gen 2).
+- ~tiptree~ :: Ubuntu on WSL2 on the same hardware.
