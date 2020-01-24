@@ -1,0 +1,7 @@
+#+TITLE: todo
+
+* Haskell
+** Get `coc.vim` working with `ghcide`.
+
+* beets
+** finish moving music from xps 13 into kbfs
