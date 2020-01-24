@@ -14,26 +14,29 @@ super + Return
 super + e
 	emacsclient -c
 
-super + {_,shift + }e
+super + shift + e
 	emacsclient -a '' -c -e '(+eshell/frame ())'
 
 super + w
 	firefox
 
-super + {_,shift + }b
-	 alacritty -c nnn -e n
+super + shift + b
+	 alacritty --class nnn -e 'n'
 
-# super + v
-# 	 st -f "IBM Plex Mono:size=11:antialias=true:autohint=off" -c Nvim -e nvim
+super + v
+	 alacritty --class neovim -e nvim
 
-# super + p
-# 	rofi-pass
+super + shift + p
+	rofi-pass
+
+super + shift +d
+	rofi-systemd
 
 super + space
  	rofi -show drun -modi drun,run,window -show-icons -sidebar-mode -terminal alacritty -display-run " " -display-drun "λ " -display-window ""
 
-# super + {_,shift + }space
-#    polybar-msg cmd toggle
+super + shift + space
+   polybar-msg cmd toggle
 
 
 # make sxhkd reload its configuration files:
