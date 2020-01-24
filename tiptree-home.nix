@@ -144,6 +144,7 @@ programs.neovim = {
       nerdtree
       vim-commentary
       goyo
+      vim
     ];
   };
  };
