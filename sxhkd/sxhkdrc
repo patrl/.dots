@@ -21,7 +21,7 @@ super + w
 	firefox
 
 super + shift + b
-	 alacritty --class nnn -e 'n'
+	 alacritty --class nnn -e 'nnn'
 
 super + v
 	 alacritty --class neovim -e nvim
