@@ -1,11 +1,3 @@
-export NNN_TRASH=1 # nnn trashes files to the desktop Trash
-export NNN_TMPFILE="/tmp/nnn"
-export NNN_USE_EDITOR=1
-export NNN_PLUG='l:launch'
-
-export PURE_PROMPT_SYMBOL="λ"
-export PURE_PROMPT_VICMD_SYMBOL="ν"
-
 n ()
 {
   # Block nesting of nnn in subshells
