@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     (texlive.combine {
       inherit (texlive)
+      tikz-cd # necessary for commutative diagrams
       # classico
       babel-german
       bbding
