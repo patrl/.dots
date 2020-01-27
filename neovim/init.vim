@@ -36,6 +36,10 @@ noremap <C-S> :update<CR>
 vnoremap <C-S> <C-C>:update<CR>
 inoremap <C-S> <C-O>:update<CR>
 
+let g:nnn#layout = 'vnew' 
+
+nnoremap <silent> <leader>t :NERDTreeToggle<CR>
+
 " Unified color scheme (default: dark)
 colo dracula 
 
