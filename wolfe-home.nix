@@ -17,7 +17,6 @@
     NNN_TRASH= "1"; # nnn trashes files to the desktop Trash
     NNN_TMPFILE = "/tmp/nnn";
     NNN_USE_EDITOR= "1";
-    NNN_PLUG="'l:launch'";
     PURE_PROMPT_SYMBOL="λ";
     PURE_PROMPT_VICMD_SYMBOL="ν";
 
@@ -42,9 +41,6 @@
     };
     ".local/share/applications/emacs-dired.desktop" = {
       source = mimeapps/emacs-dired.desktop;
-    };
-    ".local/share/applications/zathura.desktop" = {
-      source = mimeapps/zathura.desktop;
     };
   };
 
@@ -121,6 +117,7 @@
     file # need this for the nnn plugin nuke
     fd # supercharged find
     imagemagick
+    cmus
 
 
 
@@ -155,7 +152,7 @@
     # (pkgs.haskell.packages.ghc865.ghcWithPackages (self : [
 	    # self.cabal-install
     # ]))
-    haskellPackages.Agda
+    haskellPackages.Agda # necessary for agda-input in emacs
 
 
     #########
@@ -163,6 +160,17 @@
     #########
 
     cascadia-code
+
+
+
+    #########
+    # games #
+    #########
+
+    brogue
+    (pkgs.dwarf-fortress-packages.dwarf-fortress-full.override {
+      theme = "gemset";
+    })
 
   ];
 
@@ -217,6 +225,10 @@
 
   programs.beets = {
     enable = true;
+    settings  = {
+      directory = "/home/patrl/keybase/private/patrl/music";
+      library = "/home/patrl/keybase/private/patrl/music/beets/musiclibrary.db";
+    };
   }; # TODO get library and directory settings working properly, pointing at keybase
 
 
