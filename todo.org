@@ -1,7 +1,13 @@
 #+TITLE: todo
 
-* Haskell
-** Get `coc.vim` working with `ghcide`.
-
+* TODO deal with ~nnn~
 * beets
 ** finish moving music from xps 13 into kbfs
+
+* Neovim
+** TODO integrating ~direnv~ and ~coc.vim~
+After attempting to use neovim's direnv plugin with ~coc.vim~ to use ~ghcide~
+with a haskell project, it seems that ~coc~ starts too quickly -- i.e., before
+direnv has had a chance to set the right variables. One easy fix is to run
+~:CocRestart~ from inside neovim, although it would be more satisfactory to come
+up with a longer term solution.
