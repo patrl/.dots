@@ -24,23 +24,23 @@
 
   home.file = {
     ".config/alacritty/alacritty.yml" = {
-      source = alacritty/alacritty.yml;
+      source = programs/alacritty/alacritty.yml;
     };
     ".config/sxhkd/sxhkdrc" = {
-      source = sxhkd/sxhkdrc;
+      source = programs/sxhkd/sxhkdrc;
     };
     ".config/polybar/launch.sh" = {
-      source = polybar/launch.sh;
+      source = programs/polybar/launch.sh;
       executable = true;
     };
     ".config/polybar/config" = {
-      source = polybar/polybar.conf;
+      source = programs/polybar/polybar.conf;
     };
     ".local/share/applications/mimeapps.list" = {
-      source = mimeapps/mimeapps.list;
+      source = programs/mimeapps/mimeapps.list;
     };
     ".local/share/applications/emacs-dired.desktop" = {
-      source = mimeapps/emacs-dired.desktop;
+      source = programs/mimeapps/emacs-dired.desktop;
     };
   };
 
@@ -118,6 +118,7 @@
     fd # supercharged find
     imagemagick
     cmus
+    asciinema
 
 
 
@@ -168,9 +169,6 @@
     #########
 
     brogue
-    (pkgs.dwarf-fortress-packages.dwarf-fortress-full.override {
-      theme = "gemset";
-    })
 
   ];
 
@@ -182,7 +180,7 @@
 
   programs.emacs.enable = true;
 
-  programs.neovim = ( import neovim/default.nix { inherit pkgs; });
+  programs.neovim = ( import programs/neovim/default.nix { inherit pkgs; });
 
   services.emacs.enable = true;
 
@@ -195,12 +193,12 @@
 
   programs.bat.enable = true; # a purrfect replacement for cat
 
-  programs.git = ( import git/default.nix { inherit pkgs; }); # git gud
+  programs.git = ( import programs/git/default.nix { inherit pkgs; }); # git gud
 
   # avoid derangement via direnv
   programs.direnv = {
     enable = true;
-    stdlib = builtins.readFile direnv/direnvrc;
+    stdlib = builtins.readFile programs/direnv/direnvrc;
   };
 
   # junegunn's fuzzy finder
@@ -216,7 +214,7 @@
   };
 
   # ze best shell
-  programs.zsh = ( import zsh/default.nix { inherit pkgs; });
+  programs.zsh = ( import programs/zsh/default.nix { inherit pkgs; });
 
   programs.htop.enable = true; # check whether your laptop is melting
 
@@ -254,11 +252,11 @@
   services.random-background = {
     enable = true;
     enableXinerama = true;
-    imageDirectory = "%h/.dots/bg";
+    imageDirectory = "%h/.dots/programs/bg";
   };
 
   # gtk config
-  gtk = ( import gtk/default.nix {inherit pkgs;});
+  gtk = ( import programs/gtk/default.nix {inherit pkgs;});
 
   # ensures a reasonably sized cursor
   xsession.pointerCursor = {

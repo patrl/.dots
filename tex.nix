@@ -57,10 +57,10 @@
   ];
 
   home.file = {
-    "texmf/tex/latex/biblatex/biblatex-sp-unified.bbx" = {
+    "programs/texmf/tex/latex/biblatex/biblatex-sp-unified.bbx" = {
       source = texmf/biblatex-sp-unified.bbx;
     };
-    "texmf/tex/latex/biblatex/sp-authoryear-comp.bbx" = {
+    "programs/texmf/tex/latex/biblatex/sp-authoryear-comp.bbx" = {
       source = texmf/biblatex-sp-unified.bbx;
     };
   };

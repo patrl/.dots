@@ -178,7 +178,7 @@
       greeters.mini = {
         enable = true;
         user = "patrl";
-        extraConfig = (builtins.readFile mini-greeter/mini-greeter.conf);
+        extraConfig = (builtins.readFile programs/mini-greeter/mini-greeter.conf);
       };
     };
     displayManager.defaultSession = "none+bspwm";
@@ -198,7 +198,7 @@
     };
     windowManager.bspwm = {
       enable = true;
-      configFile = bspwm/bspwmrc;
+      configFile = programs/bspwm/bspwmrc;
     };
   };
 
