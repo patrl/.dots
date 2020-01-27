@@ -11,8 +11,16 @@
   home.sessionVariables = {
     # use emacs as my default editor
     EDITOR = "${config.programs.emacs.package}/bin/emacsclient -c";
+    VISUAL = "${config.programs.emacs.package}/bin/emacsclient -c";
     # read man pages in neovim (hot!)
     MANPAGER = "${config.programs.neovim.package}/bin/nvim -c 'set ft=man' -";
+    NNN_TRASH= "1"; # nnn trashes files to the desktop Trash
+    NNN_TMPFILE = "/tmp/nnn";
+    NNN_USE_EDITOR= "1";
+    NNN_PLUG="'l:launch'";
+    PURE_PROMPT_SYMBOL="λ";
+    PURE_PROMPT_VICMD_SYMBOL="ν";
+
   };
 
   home.file = {
@@ -34,6 +42,9 @@
     };
     ".local/share/applications/emacs-dired.desktop" = {
       source = mimeapps/emacs-dired.desktop;
+    };
+    ".local/share/applications/zathura.desktop" = {
+      source = mimeapps/zathura.desktop;
     };
   };
 
@@ -105,10 +116,11 @@
     figlet
     neofetch
     feh
-    maim
+    maim # screenshot tool
     xorg.xprop
     file # need this for the nnn plugin nuke
     fd # supercharged find
+    imagemagick
 
 
 
@@ -140,9 +152,9 @@
     racket # racket
     nodejs # js
     # (import (builtins.fetchTarball "https://github.com/hercules-ci/ghcide-nix/tarball/master") {}).ghcide-ghc865
-    (pkgs.haskell.packages.ghc865.ghcWithPackages (self : [
-	    self.cabal-install
-    ]))
+    # (pkgs.haskell.packages.ghc865.ghcWithPackages (self : [
+	    # self.cabal-install
+    # ]))
     haskellPackages.Agda
 
 
