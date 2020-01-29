@@ -82,6 +82,7 @@
     #############
 
     nix-prefetch-git # update hash in a nix expression; best used through emacs
+    nixfmt
 
 
 
@@ -100,7 +101,8 @@
     trash-cli # for the rm-happy among us; used by nnn
     nnn # file manager
     unzip # unzipping
-    ispell # cli spellcheck; used by emacs
+    aspell
+    aspellDicts.en # cli spellcheck; used by emacs
     powertop # change power management settings
     glxinfo # graphics settings
     gtypist
@@ -119,6 +121,8 @@
     imagemagick
     cmus
     asciinema
+    pandoc
+    haskellPackages.pandoc-citeproc
 
 
 
@@ -137,6 +141,7 @@
     pavucontrol
     polybar
     skype
+    zotero
 
 
     #############
@@ -196,10 +201,14 @@
   programs.git = ( import programs/git/default.nix { inherit pkgs; }); # git gud
 
   # avoid derangement via direnv
-  programs.direnv = {
-    enable = true;
-    stdlib = builtins.readFile programs/direnv/direnvrc;
-  };
+  # programs.direnv = {
+  #   enable = true;
+  #   # stdlib = builtins.readFile programs/direnv/direnvrc;
+  # };
+  #
+  services.lorri.enable = true;
+
+  programs.direnv.enable = true;
 
   # junegunn's fuzzy finder
   programs.fzf = {
