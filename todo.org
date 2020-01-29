@@ -1,6 +1,8 @@
 #+TITLE: todo
 
 * TODO deal with ~nnn~
+* TODO package ~autopadd.cr~ for nix
+* TODO package ~teiler~ for nix
 * beets
 ** finish moving music from xps 13 into kbfs
 
