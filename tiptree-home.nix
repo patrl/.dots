@@ -124,7 +124,7 @@ programs.neovim = {
   viAlias = true;
   vimAlias = true;
   configure = {
-    customRC = builtins.readFile neovim/init.vim;
+    customRC = builtins.readFile programs/neovim/init.vim;
     plug.plugins = with plugins; [
       # theme
       vim-airline-themes
@@ -193,7 +193,7 @@ services.gpg-agent = {
 
   home.file = {
     ".direnvrc" = {
-      source = direnv/direnvrc;
+      source = programs/direnv/direnvrc;
     };
   };
 
