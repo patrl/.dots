@@ -101,6 +101,7 @@
     trash-cli # for the rm-happy among us; used by nnn
     nnn # file manager
     unzip # unzipping
+    zip
     aspell
     aspellDicts.en # cli spellcheck; used by emacs
     powertop # change power management settings
@@ -142,6 +143,7 @@
     polybar
     skype
     zotero
+    retroarch
 
 
     #############
@@ -236,7 +238,7 @@
       directory = "/home/patrl/keybase/private/patrl/music";
       library = "/home/patrl/keybase/private/patrl/music/beets/musiclibrary.db";
     };
-  }; # TODO get library and directory settings working properly, pointing at keybase
+  }; # todo get library and directory settings working properly, pointing at keybase
 
 
 
