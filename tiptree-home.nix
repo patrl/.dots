@@ -13,10 +13,10 @@ in {
     ripgrep
     prettyping
     age
-    weechat
+    # weechat
     trash-cli
     nnn
-    nur.repos.kalbasit.nixify
+    # nur.repos.kalbasit.nixify
 
     nix-prefetch-git
 
@@ -121,6 +121,7 @@ programs.direnv = {
 
 programs.neovim = {
   enable = true;
+  package = pkgs.nightly-neovim;
   viAlias = true;
   vimAlias = true;
   configure = {
@@ -196,5 +197,12 @@ services.gpg-agent = {
       source = programs/direnv/direnvrc;
     };
   };
+
+  nixpkgs.overlays = [ (self: super: {
+    nightly-neovim = let
+    pinned-nixpkgs = fetchTarball { url = https://github.com/NixOS/nixpkgs/archive/19.09.tar.gz; };
+    in (import pinned-nixpkgs {}).neovim; 
+  }
+  )];
 
 }
