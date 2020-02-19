@@ -5,3 +5,7 @@ Declarative dots for NixOS and WSL2 managed via the [[https://nixos.org/nix/][~n
 
 - ~wolfe~ :: NixOS on an encrypted zfs root on a Thinkpad X1 Extreme (gen 2).
 - ~tiptree~ :: Ubuntu on WSL2 on the same hardware.
+
+* Secrets
+
+Periodically run ~pass audit~ on your personal password store.

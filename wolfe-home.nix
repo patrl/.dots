@@ -54,6 +54,7 @@
   ##################################
 
   programs.password-store = {
+    package = pkgs.pass.withExtensions (exts: [ exts.pass-audit ]);
     enable = true;
     settings = {
       PASSWORD_STORE_DIR = "/home/patrl/.password-store";
@@ -70,6 +71,7 @@
 
   services.gpg-agent = {
     enable = true;
+    enableSshSupport = true;
   };
 
   home.packages = with pkgs; [
