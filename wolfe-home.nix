@@ -44,7 +44,10 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true; # software doesn't grow on trees
+  nixpkgs.config = {
+    allowUnfree = true;
+    # allowBroken = true;
+  }; # software doesn't grow on tree
 
 
 
@@ -84,7 +87,7 @@
     #############
 
     nix-prefetch-git # update hash in a nix expression; best used through emacs
-    nixfmt
+    # nixfmt
 
 
 
@@ -145,8 +148,7 @@
     polybar
     skype
     zotero
-    retroarch
-
+    retroarchBare
 
     #############
     # languages #
@@ -154,7 +156,7 @@
 
     # agda.agdawithPackages (p: [ p.standard-library ])
     coq # coq
-    idris # idris
+    # idris # idris
     rustup # rust
     racket # racket
     nodejs # js
@@ -162,7 +164,7 @@
     # (pkgs.haskell.packages.ghc865.ghcWithPackages (self : [
 	    # self.cabal-install
     # ]))
-    haskellPackages.Agda # necessary for agda-input in emacs
+    # haskellPackages.Agda # FIXME
 
 
     #########
