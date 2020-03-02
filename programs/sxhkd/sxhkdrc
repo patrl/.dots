@@ -32,6 +32,9 @@ super + shift + p
 super + shift +d
 	rofi-systemd
 
+super + shift + s
+	maim -s ~/Pictures/$(date +%s).png
+
 super + space
  	rofi -show drun -modi drun,run,window -show-icons -sidebar-mode -terminal alacritty -display-run " " -display-drun "λ " -display-window ""
 
