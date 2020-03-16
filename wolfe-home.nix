@@ -14,12 +14,12 @@
     VISUAL = "${config.programs.emacs.package}/bin/emacsclient -c";
     # read man pages in neovim (hot!)
     MANPAGER = "${config.programs.neovim.package}/bin/nvim -c 'set ft=man' -";
-    NNN_TRASH= "1"; # nnn trashes files to the desktop Trash
-    NNN_TMPFILE = "/tmp/nnn";
-    NNN_USE_EDITOR= "1";
-    PURE_PROMPT_SYMBOL="λ";
-    PURE_PROMPT_VICMD_SYMBOL="ν";
-
+    # NNN_TRASH= "1"; # nnn trashes files to the desktop Trash
+    # NNN_TMPFILE = "/tmp/nnn";
+    # NNN_USE_EDITOR= "1";
+    # PURE_PROMPT_SYMBOL="λ";
+    # PURE_PROMPT_VICMD_SYMBOL="ν";
+    # QT_SCALE_FACTOR= "2"; # this is primarily to get zoom scaling properly
   };
 
   home.file = {
@@ -141,6 +141,8 @@
     spotify # muzak
     vscode # burn the witch
     discord
+    zoom-us
+    slack
     zotero
     rofi-pass
     rofi-systemd

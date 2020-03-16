@@ -94,15 +94,15 @@
   # the following settings are all necessary for nvidia prime to work.
   # I've disabled the card however until prime offloading is available in nixos.
   hardware.nvidia = {
-    optimus_prime = {
-      enable = true;
+    prime = {
+      offload.enable = true;
       nvidiaBusId = "PCI:1:0:0";
       intelBusId = "PCI:0:2:0";
     };
     modesetting.enable = true;
   };
 
-  services.xserver.videoDrivers = [ "intel" ]; # change this to "nvidia" to use the nvidia card
+  services.xserver.videoDrivers = [ "nvidia" ]; # change this to "nvidia" to use the nvidia card
 
   # hardware.nvidiaOptimus.disable = true;
 
@@ -208,6 +208,15 @@
     backend = "glx";
     inactiveOpacity = "0.8";
     shadowExclude = [ "class_g = 'Firefox' && argb" ];
+  };
+
+  environment.sessionVariables = {
+    NNN_TRASH= "1"; # nnn trashes files to the desktop Trash
+    NNN_TMPFILE = "/tmp/nnn";
+    NNN_USE_EDITOR= "1";
+    PURE_PROMPT_SYMBOL="λ";
+    PURE_PROMPT_VICMD_SYMBOL="ν";
+    QT_SCALE_FACTOR= "2"; # this is primarily to get zoom scaling properly
   };
 
   environment.etc = {
