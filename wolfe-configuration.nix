@@ -82,6 +82,11 @@
     support32Bit = true; # need this for steam
   };
 
+  hardware.opengl = {
+    driSupport32Bit = true;
+    extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
+  };
+
 
 
 
@@ -102,7 +107,7 @@
     modesetting.enable = true;
   };
 
-  services.xserver.videoDrivers = [ "nvidia" ]; # change this to "nvidia" to use the nvidia card
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   # hardware.nvidiaOptimus.disable = true;
 
