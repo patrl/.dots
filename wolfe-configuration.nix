@@ -235,8 +235,6 @@
     '';
   };
 
-  environment.pathsToLink = [ "/share/agda" ];
-
   services.dbus.packages = with pkgs; [ gnome3.dconf ];
 
 
@@ -294,7 +292,6 @@
     vanilla-dmz
     hicolor-icon-theme
     lightlocker
-    AgdaStdlib
   ];
 
   services.keybase.enable = true;
@@ -336,6 +333,5 @@
   # servers. You should change this only after NixOS release notes say you
   # should.
   system.stateVersion = "19.09"; # Did you read the comment?
-
 
 }
