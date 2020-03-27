@@ -235,6 +235,8 @@
     '';
   };
 
+  environment.pathsToLink = [ "/share/agda" ];
+
   services.dbus.packages = with pkgs; [ gnome3.dconf ];
 
 
@@ -292,6 +294,7 @@
     vanilla-dmz
     hicolor-icon-theme
     lightlocker
+    AgdaStdlib
   ];
 
   services.keybase.enable = true;
