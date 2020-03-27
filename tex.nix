@@ -15,7 +15,7 @@
       newpx
       kantlipsum
       ly1
-      ifxetex
+      # ifxetex # FIXME
       qtree
       linguex
       libertinus
