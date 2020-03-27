@@ -49,6 +49,18 @@
     # allowBroken = true;
   }; # software doesn't grow on tree
 
+  nixpkgs.overlays = [
+    (self: super: {
+      weechat = super.weechat.override {
+        configure = { ... }: {
+          scripts = with self.weechatScripts; [
+            wee-slack
+          ];
+        };
+      };
+    })
+    ];
+
 
 
 
@@ -129,6 +141,7 @@
     asciinema
     pandoc
     haskellPackages.pandoc-citeproc
+    vulkan-tools
 
 
 
@@ -151,6 +164,8 @@
     skype
     zotero
     retroarchBare
+    steam
+    obs-studio
 
     #############
     # languages #
