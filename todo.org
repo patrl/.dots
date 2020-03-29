@@ -1,6 +1,7 @@
 #+TITLE: todo
 
-* TODO deal with ~nnn~
+* TODO get ~mbsync~ working
+* DONE deal with ~nnn~
 * TODO package ~autopadd.cr~ for nix
 [[https://gitlab.com/repomaa/autopass.cr][Joakim Repomaa / autopass.cr · GitLab]]
 * TODO package ~teiler~ for nix
