@@ -14,12 +14,6 @@
     VISUAL = "${config.programs.emacs.package}/bin/emacsclient -c";
     # read man pages in neovim (hot!)
     MANPAGER = "${config.programs.neovim.package}/bin/nvim -c 'set ft=man' -";
-    # NNN_TRASH= "1"; # nnn trashes files to the desktop Trash
-    # NNN_TMPFILE = "/tmp/nnn";
-    # NNN_USE_EDITOR= "1";
-    # PURE_PROMPT_SYMBOL="λ";
-    # PURE_PROMPT_VICMD_SYMBOL="ν";
-    # QT_SCALE_FACTOR= "2"; # this is primarily to get zoom scaling properly
   };
 
   home.file = {
@@ -46,7 +40,6 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    # allowBroken = true;
   }; # software doesn't grow on tree
 
   nixpkgs.overlays = [
@@ -142,6 +135,7 @@
     pandoc
     haskellPackages.pandoc-citeproc
     vulkan-tools
+    pdftk
 
 
 
@@ -163,25 +157,22 @@
     polybar
     skype
     zotero
-    retroarchBare
-    steam
     obs-studio
+    zulip
 
     #############
     # languages #
     #############
 
+    # N.b. I mostly just use ad-hoc nix-shells
+
     # agda.agdawithPackages (p: [ p.standard-library ])
     coq # coq
-    # idris # idris
+    # idris # FIXME
     rustup # rust
     racket # racket
     nodejs # js
-    # (import (builtins.fetchTarball "https://github.com/hercules-ci/ghcide-nix/tarball/master") {}).ghcide-ghc865
-    # (pkgs.haskell.packages.ghc865.ghcWithPackages (self : [
-	    # self.cabal-install
-    # ]))
-    # haskellPackages.Agda # FIXME
+    # haskellPackages.Agda # FIXME there's an agda rework attempt happening here: https://github.com/NixOS/nixpkgs/pull/76653
 
 
     #########
@@ -197,6 +188,16 @@
     #########
 
     brogue
+    steam
+    retroarchBare
+
+    ########
+    # mail #
+    ########
+
+    isync
+    notmuch
+    gmailieer # TODO update to lieer on nixpkgs
 
   ];
 
