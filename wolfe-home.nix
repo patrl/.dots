@@ -85,6 +85,13 @@
   home.packages = with pkgs; [
 
 
+    ###############
+    # build tools #
+    ###############
+    gcc
+
+
+
 
 
     #############
