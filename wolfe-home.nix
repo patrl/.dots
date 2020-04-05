@@ -143,6 +143,7 @@
     haskellPackages.pandoc-citeproc
     vulkan-tools
     pdftk
+    graphviz
 
 
 
@@ -205,6 +206,10 @@
     isync
     notmuch
     gmailieer # TODO update to lieer on nixpkgs
+
+
+
+    gsettings-desktop-schemas # maybe necessary for zotero
 
   ];
 
@@ -332,6 +337,8 @@
   programs.alacritty.enable = true;
 
   programs.firefox.enable = true;
+
+  programs.chromium.enable = true;
 
   systemd.user.services.dropbox = {
     Unit = {

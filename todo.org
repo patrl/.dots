@@ -7,3 +7,4 @@
 * TODO package ~teiler~ for nix
 [[https://github.com/carnager/teiler][GitHub - carnager/teiler: Little script for screenshots and screencasts utili...]]
 * TODO submit PR for nixpkgs separating out sxhd and bspwm services
+* TODO fix ~zotero~ crash
