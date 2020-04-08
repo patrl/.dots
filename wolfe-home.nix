@@ -52,6 +52,8 @@
         };
       };
     })
+
+    (import ./overlays/lieer.nix )
     ];
 
 
@@ -109,7 +111,7 @@
     #############
 
     stow # symlink manager
-    gitAndTools.hub # github cli (official). I alias git to this.
+    gitAndTools.git-hub # github cli. I alias git to this.
     exa # improved ls in rust
     ripgrep # grep with batteries
     prettyping # prettier ping

@@ -16,5 +16,6 @@
     rebase = { autostash = "true"; };
     pull = { rebase = "true"; };
     color = { ui = "true"; };
+    include = { path = "git-hub.inc"; };
   };
 }

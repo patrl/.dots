@@ -9,10 +9,9 @@
   initExtra = ( builtins.readFile ./initExtra.zsh );
   envExtra = ( builtins.readFile ./envExtra.zsh );
   shellAliases = {
-    g = "hub";
-    git = "hub";
-    gcl = "hub clone";
-    gstat = "hub status";
+    g = "git-hub";
+    gcl = "git-hub clone -t";
+    gstat = "git-hub status";
     pp = "prettyping";
     l = "exa";
     ls = "exa";
