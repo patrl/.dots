@@ -54,6 +54,7 @@
     })
 
     (import ./overlays/lieer.nix )
+    (import ./overlays/zotero.nix )
     ];
 
 
