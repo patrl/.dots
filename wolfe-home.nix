@@ -1,6 +1,13 @@
 { config, pkgs, ... }:
 
-{
+let
+  mozilla-overlay = fetchTarball {
+      url = https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz;
+  };
+  emacs-overlay = fetchTarball {
+      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+    };
+in {
 
   imports = [ ./tex.nix ]; # latex stuff
 
@@ -14,6 +21,7 @@
     VISUAL = "${config.programs.emacs.package}/bin/emacsclient -c";
     # read man pages in neovim (hot!)
     MANPAGER = "${config.programs.neovim.package}/bin/nvim -c 'set ft=man' -";
+    WEECHAT_HOME = ''${config.xdg.configHome}/weechat'';
   };
 
   home.file = {
@@ -29,6 +37,9 @@
     };
     ".config/polybar/config" = {
       source = programs/polybar/polybar.conf;
+    };
+    ".mbsyncrc" = {
+      source = programs/isync/mbsync.conf;
     };
     ".local/share/applications/mimeapps.list" = {
       source = programs/mimeapps/mimeapps.list;
@@ -54,7 +65,8 @@
     })
 
     (import ./overlays/lieer.nix )
-    (import ./overlays/zotero.nix )
+    (import "${mozilla-overlay}")
+    (import "${emacs-overlay}")
     ];
 
 
@@ -166,7 +178,6 @@
     rofi-systemd
     pavucontrol
     polybar
-    skype
     zotero
     obs-studio
     zulip
@@ -208,6 +219,7 @@
 
     isync
     notmuch
+    afew # an initial tagging script for notmuch
     gmailieer # TODO update to lieer on nixpkgs
 
 
@@ -222,7 +234,10 @@
   # editors #
   ###########
 
-  programs.emacs.enable = true;
+  programs.emacs = {
+    enable = true;
+    package = pkgs.emacsUnstable;
+  };
 
   programs.neovim = ( import programs/neovim/default.nix { inherit pkgs; });
 
@@ -339,7 +354,10 @@
   # super fast terminal
   programs.alacritty.enable = true;
 
-  programs.firefox.enable = true;
+  programs.firefox = {
+    enable = true;
+    package = pkgs.latest.firefox-nightly-bin;
+  };
 
   programs.chromium.enable = true;
 
