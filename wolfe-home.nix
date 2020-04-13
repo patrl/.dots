@@ -179,7 +179,6 @@ in {
     pavucontrol
     polybar
     zotero
-    obs-studio
     zulip
 
     #############
@@ -218,9 +217,7 @@ in {
     ########
 
     isync
-    notmuch
-    afew # an initial tagging script for notmuch
-    gmailieer # TODO update to lieer on nixpkgs
+    mu
 
 
 
