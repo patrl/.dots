@@ -4,7 +4,7 @@
 
   imports = [
     ./common.nix
-    ./tex.nix
+    # ./tex.nix
   ];
 
 programs.emacs = {
