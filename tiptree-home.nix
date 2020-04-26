@@ -7,6 +7,11 @@
     # ./tex.nix
   ];
 
+
+  home.packages = with pkgs; [
+    browserpass
+  ];
+
 programs.emacs = {
   package = pkgs.emacs26-nox;
 };
