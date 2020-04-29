@@ -167,7 +167,6 @@ in {
   #   # stdlib = builtins.readFile programs/direnv/direnvrc;
   # };
   #
-  services.lorri.enable = true;
 
   programs.beets = {
     enable = true;

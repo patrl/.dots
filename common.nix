@@ -117,6 +117,8 @@
 
   programs.bat.enable = true; # a purrfect replacement for cat
 
+  services.lorri.enable = true;
+
   programs.direnv.enable = true;
 
   # junegunn's fuzzy finder
