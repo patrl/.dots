@@ -1,10 +1,10 @@
 #+TITLE: todo
 
 * TODO get ~mbsync~ working
-* DONE deal with ~nnn~
 * TODO package ~autopadd.cr~ for nix
 [[https://gitlab.com/repomaa/autopass.cr][Joakim Repomaa / autopass.cr · GitLab]]
 * TODO package ~teiler~ for nix
 [[https://github.com/carnager/teiler][GitHub - carnager/teiler: Little script for screenshots and screencasts utili...]]
 * TODO submit PR for nixpkgs separating out sxhd and bspwm services
-* DONE fix ~zotero~ crash
+* TODO update ~exult~ in ~nixpkgs~
+* TODO put together private nixpkgs overlay
