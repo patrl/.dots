@@ -64,6 +64,14 @@ in {
     (import "${emacs-overlay}")
     ];
 
+    nixpkgs.config = {
+      retroarch = {
+        enableSnes9x = true;
+        enablePCSXRearmed = true;
+        enableBeetlePSX = true;
+      };
+    };
+
 
 
 
@@ -131,9 +139,9 @@ in {
     # games #
     #########
 
+    retroarch
     brogue
     steam
-    retroarchBare
 
 
 
