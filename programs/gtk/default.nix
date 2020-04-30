@@ -7,7 +7,7 @@
       name = "Papirus-Dark";
     };
     theme = {
-      package = pkgs.arc-theme;
-      name = "Arc-Dark";
+      package = pkgs.adapta-gtk-theme;
+      name = "Adapta-Nokto";
     };
 }
