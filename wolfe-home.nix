@@ -21,6 +21,7 @@ in {
     # use emacs as my default editor
     EDITOR = "${config.programs.emacs.package}/bin/emacsclient -c";
     VISUAL = "${config.programs.emacs.package}/bin/emacsclient -c";
+    MAILDIR = "$HOME/.mail";
   };
 
   home.file = {
@@ -60,6 +61,7 @@ in {
     })
 
     (import ./overlays/lieer.nix )
+    (import ./overlays/exult.nix )
     (import "${mozilla-overlay}")
     (import "${emacs-overlay}")
     ];
@@ -111,6 +113,8 @@ in {
     polybar
     zotero
     zulip
+    calibre
+    krita
 
     #############
     # languages #
