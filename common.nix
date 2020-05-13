@@ -155,7 +155,7 @@
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
-    pinentryFlavor = "emacs";
+    pinentryFlavor = "gtk2";
   };
 
 }
