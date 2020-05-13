@@ -1,6 +1,5 @@
 #+TITLE: todo
 
-* TODO fix pinentry
 * TODO get ~mbsync~ working
 * PROJ package ~autopadd.cr~ for nix
 [[https://gitlab.com/repomaa/autopass.cr][Joakim Repomaa / autopass.cr · GitLab]]
