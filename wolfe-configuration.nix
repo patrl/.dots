@@ -207,11 +207,11 @@
     };
   };
 
-  services.compton = {
+  services.picom = {
     enable = true;
     shadow = true;
     backend = "glx";
-    inactiveOpacity = "0.8";
+    inactiveOpacity = 0.8;
     shadowExclude = [ "class_g = 'Firefox' && argb" ];
   };
 

@@ -1,10 +1,11 @@
 #+TITLE: todo
 
+* TODO fix pinentry
 * TODO get ~mbsync~ working
-* TODO package ~autopadd.cr~ for nix
+* PROJ package ~autopadd.cr~ for nix
 [[https://gitlab.com/repomaa/autopass.cr][Joakim Repomaa / autopass.cr · GitLab]]
-* TODO package ~teiler~ for nix
+* PROJ package ~teiler~ for nix
 [[https://github.com/carnager/teiler][GitHub - carnager/teiler: Little script for screenshots and screencasts utili...]]
-* TODO submit PR for nixpkgs separating out sxhd and bspwm services
-* TODO update ~exult~ in ~nixpkgs~
-* TODO put together private nixpkgs overlay
+* PROJ submit PR for nixpkgs separating out sxhd and bspwm services
+* PROJ update ~exult~ in ~nixpkgs~
+* PROJ put together private nixpkgs overlay

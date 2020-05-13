@@ -115,6 +115,7 @@ in {
     zulip
     calibre
     krita
+    gparted
 
     #############
     # languages #
