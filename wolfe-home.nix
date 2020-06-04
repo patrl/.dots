@@ -89,6 +89,7 @@ in {
     # cli tools #
     #############
 
+    niv
     powertop # change power management settings
     glxinfo # graphics settings
     feh
@@ -116,6 +117,10 @@ in {
     calibre
     krita
     gparted
+    peek
+    aseprite
+    rx
+    tiled
 
     #############
     # languages #
@@ -123,7 +128,8 @@ in {
 
     # N.b. I mostly just use ad-hoc nix-shells
 
-    # agda.agdawithPackages (p: [ p.standard-library ])
+    poetry # manage python dependencies (I'm using this with poetry2nix)
+    (agda.withPackages [ agdaPackages.standard-library ])
     coq # coq
     # idris # FIXME
     rustup # rust
@@ -147,6 +153,7 @@ in {
     retroarch
     brogue
     steam
+    exult16
 
 
 
