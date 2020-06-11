@@ -6,5 +6,5 @@
 * PROJ package ~teiler~ for nix
 [[https://github.com/carnager/teiler][GitHub - carnager/teiler: Little script for screenshots and screencasts utili...]]
 * PROJ submit PR for nixpkgs separating out sxhd and bspwm services
-* PROJ update ~exult~ in ~nixpkgs~
-* PROJ put together private nixpkgs overlay
+* DONE update ~exult~ in ~nixpkgs~
+* DONE put together private nixpkgs overlay
