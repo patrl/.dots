@@ -47,6 +47,9 @@ in {
     ".local/share/applications/emacs-dired.desktop" = {
       source = programs/mimeapps/emacs-dired.desktop;
     };
+    ".local/share/applications/org-protocol.desktop" = {
+      source = programs/mimeapps/org-protocol.desktop;
+    };
   };
 
   nixpkgs.overlays = [
@@ -89,6 +92,8 @@ in {
     # cli tools #
     #############
 
+    steam-run-native
+    sqlite # emacs seems to require the sqlite3 binary these days
     niv
     powertop # change power management settings
     glxinfo # graphics settings
@@ -128,6 +133,7 @@ in {
 
     # N.b. I mostly just use ad-hoc nix-shells
 
+    crystal2nix
     poetry # manage python dependencies (I'm using this with poetry2nix)
     (agda.withPackages [ agdaPackages.standard-library ])
     coq # coq
