@@ -42,6 +42,7 @@
 
     stow # symlink manager
     gitAndTools.git-hub # github cli. I alias git to this.
+    gitAndTools.git-ignore # auto fetch language template
     exa # improved ls in rust
     ripgrep # grep with batteries
     prettyping # prettier ping
