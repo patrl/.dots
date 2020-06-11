@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 {
-
     nnn = pkgs.vimUtils.buildVimPlugin {
       name = "nnn";
       src = pkgs.fetchFromGitHub {
