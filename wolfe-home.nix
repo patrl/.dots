@@ -38,6 +38,9 @@ in {
     ".config/polybar/config" = {
       source = programs/polybar/polybar.conf;
     };
+    ".agda/defaults" = {
+      source = programs/agda/defaults;
+    };
     ".mbsyncrc" = {
       source = programs/isync/mbsync.conf;
     };
@@ -46,6 +49,9 @@ in {
     };
     ".local/share/applications/emacs-dired.desktop" = {
       source = programs/mimeapps/emacs-dired.desktop;
+    };
+    ".local/share/applications/emacs-client.desktop" = {
+      source = programs/mimeapps/emacs-client.desktop;
     };
     ".local/share/applications/org-protocol.desktop" = {
       source = programs/mimeapps/org-protocol.desktop;
