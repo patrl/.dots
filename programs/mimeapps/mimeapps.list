@@ -2,6 +2,7 @@
 application/x-directory=emacs-dired.desktop
 inode/directory=emacs-dired.desktop
 application/pdf=org.pwmt.zathura.desktop
+text/*=emacs-client.desktop
 x-scheme-handler/org-protocol=org-protocol.desktop
 
 [Added Associations]
