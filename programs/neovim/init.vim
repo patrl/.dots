@@ -41,7 +41,9 @@ let g:nnn#layout = 'vnew'
 nnoremap <silent> <leader>t :NERDTreeToggle<CR>
 
 " Unified color scheme (default: dark)
-colo dracula 
+" colo dracula
+
+colo gruvbox
 
 " alignment
 set expandtab
