@@ -18,6 +18,7 @@ programs.emacs = {
 
 services.gpg-agent = {
   pinentryFlavor = null;
+  # I should really put the pinentry program under version control
   extraConfig = ''
   pinentry-program /home/patrl/repos/pinentry-wsl-ps1/pinentry-wsl-ps1.sh
   '';
