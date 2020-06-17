@@ -19,6 +19,8 @@
   # the following is currently needed for cachix on nixos
   nix.trustedUsers = [ "root" "patrl" ];
 
+  nix.package = pkgs.nixFlakes; # I need this in order to play around with the experimental flakes branch
+
 
 
 
