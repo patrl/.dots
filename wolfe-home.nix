@@ -10,7 +10,7 @@ let
 in {
 
   imports = [
-    ./tex.nix # latex stuff
+    ./programs/tex/tex.nix # latex stuff
     ./common.nix
   ];
   ###########
@@ -139,7 +139,6 @@ in {
 
     # N.b. I mostly just use ad-hoc nix-shells
 
-    crystal2nix
     poetry # manage python dependencies (I'm using this with poetry2nix)
     (agda.withPackages [ agdaPackages.standard-library ])
     coq # coq
