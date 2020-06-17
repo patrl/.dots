@@ -3,6 +3,9 @@
 * TODO get ~mbsync~ working
 * PROJ package ~autopadd.cr~ for nix
 [[https://gitlab.com/repomaa/autopass.cr][Joakim Repomaa / autopass.cr · GitLab]]
+
+This won't be possible until I've figured out a way to patch ~crystal2nix~ to handle gitlab rather than just github sources.
+
 * PROJ package ~teiler~ for nix
 [[https://github.com/carnager/teiler][GitHub - carnager/teiler: Little script for screenshots and screencasts utili...]]
 * PROJ submit PR for nixpkgs separating out sxhd and bspwm services
