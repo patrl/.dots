@@ -60,10 +60,10 @@
 
   home.file = {
     "texmf/tex/latex/biblatex/biblatex-sp-unified.bbx" = {
-      source = programs/texmf/biblatex-sp-unified.bbx;
+      source = ./biblatex-sp-unified.bbx;
     };
     "texmf/tex/latex/biblatex/sp-authoryear-comp.cbx" = {
-      source = programs/texmf/sp-authoryear-comp.cbx;
+      source = ./sp-authoryear-comp.cbx;
     };
   };
 }
