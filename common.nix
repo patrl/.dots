@@ -58,7 +58,7 @@
     rclone
     rsync
     magic-wormhole
-    ssb-patchwork
+    # ssb-patchwork # FIXME
     bc # cli calc
     figlet
     neofetch
@@ -141,6 +141,13 @@
 
   # ze best shell
   programs.zsh = ( import programs/zsh/default.nix { inherit pkgs; });
+
+  programs.starship.enable = true;
+
+  programs.starship.settings = {
+    character.symbol = "λ";
+    add_newline = "false";
+  };
 
 
 
