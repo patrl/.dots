@@ -4,7 +4,15 @@
 
 { config, pkgs, ... }:
 
-{
+let
+  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __VK_LAYER_NV_optimus=NVIDIA_only
+    exec -a "$0" "$@"
+  '';
+in {
   imports =
     [ # Include the results of the hardware scan.
       ./wolfe-hardware.nix
@@ -98,8 +106,6 @@
 
   boot.blacklistedKernelModules = [ "nouveau" ]; # blacklist the opensource nvidia driver. This will lead to kernel panics
 
-  # the following settings are all necessary for nvidia prime to work.
-  # I've disabled the card however until prime offloading is available in nixos.
   hardware.nvidia = {
     prime = {
       offload.enable = true;
@@ -109,9 +115,8 @@
     modesetting.enable = true;
   };
 
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  # hardware.nvidiaOptimus.disable = true;
+  # services.xserver.videoDrivers = [ "intel" ];
+  services.xserver.videoDrivers = [ "nvidia" ]; # TODO leading to kernel panics?
 
 
 
@@ -145,8 +150,17 @@
   services.zfs = {
     trim.enable = true; # good for ssds!
     autoScrub.enable = true;
-    autoSnapshot.enable = true;
+    autoSnapshot = {
+      enable = true;
+      frequent = 4; # keep the latest eight 15-minute snapshots (instead of four)
+      hourly = 12;
+      daily = 7;
+      weekly = 4;
+      monthly = 1;  # keep only one monthly snapshot (instead of twelve)
+    };
   };
+
+
 
 
 
@@ -157,7 +171,6 @@
 
   fonts = {
     fontconfig.dpi = 192;
-    fontconfig.penultimate.enable = true;
     fonts = with pkgs; [
       ibm-plex
     ];
@@ -287,6 +300,9 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+
+    nvidia-offload
+
     wget
     vim
     git
