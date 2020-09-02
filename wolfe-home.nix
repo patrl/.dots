@@ -73,6 +73,7 @@ in {
     (import ./overlays/exult.nix )
     (import "${mozilla-overlay}")
     (import "${emacs-overlay}")
+    (import ./overlays/zotero.nix) # TODO this is only necessary temporarily
     ];
 
     nixpkgs.config = {
@@ -80,6 +81,7 @@ in {
         enableSnes9x = true;
         enablePCSXRearmed = true;
         enableBeetlePSX = true;
+        enableDolphin = true;
       };
     };
 
@@ -98,7 +100,7 @@ in {
     # cli tools #
     #############
 
-    steam-run-native
+    # steam-run-native # FIXME gstreamer error
     sqlite # emacs seems to require the sqlite3 binary these days
     niv
     powertop # change power management settings
@@ -107,6 +109,7 @@ in {
     maim # screenshot tool
     xorg.xprop
     vulkan-tools
+    rmapi
 
     ############
     # gui apps #
@@ -115,7 +118,7 @@ in {
     dropbox # cloud service
     spotify # muzak
     vscode # burn the witch
-    discord
+    discord # FIXME
     zoom-us
     slack
     zotero
@@ -124,7 +127,7 @@ in {
     pavucontrol
     polybar
     zotero
-    zulip
+    # zulip # FIXME gstreamer error
     calibre
     krita
     gparted
@@ -132,6 +135,7 @@ in {
     aseprite
     rx
     tiled
+    xournalpp
 
     #############
     # languages #
