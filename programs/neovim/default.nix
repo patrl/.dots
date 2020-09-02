@@ -31,6 +31,8 @@ in {
       vimtex
       coc-vimtex
       direnv-vim
+      gruvbox
+      vim-pencil # I still need to incorporate this into my config
     ];
   };
 }
