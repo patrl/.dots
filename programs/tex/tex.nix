@@ -4,6 +4,9 @@
   home.packages = with pkgs; [
     (texlive.combine {
       inherit (texlive)
+      censor
+      firamath
+      xits
       ebproof # a more modern package for typesetting prooftrees.
       bussproofs # the classic package for typesetting prooftrees.
       tikz-cd # necessary for commutative diagrams
