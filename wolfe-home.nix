@@ -71,19 +71,20 @@ in {
 
     (import ./overlays/lieer.nix )
     (import ./overlays/exult.nix )
+    (import ./overlays/twad.nix )
     (import "${mozilla-overlay}")
     (import "${emacs-overlay}")
     (import ./overlays/zotero.nix) # TODO this is only necessary temporarily
     ];
 
-    nixpkgs.config = {
-      retroarch = {
-        enableSnes9x = true;
-        enablePCSXRearmed = true;
-        enableBeetlePSX = true;
-        enableDolphin = true;
-      };
-    };
+    # nixpkgs.config = {
+    #   retroarch = {
+    #     enableSnes9x = true;
+    #     enableBeetlePSX = true;
+    #     enableBeetlePCEFast = true;
+    #     enableDolphin = true;
+    #   };
+    # };
 
 
 
@@ -115,6 +116,8 @@ in {
     # gui apps #
     ############
 
+    tor-browser-bundle-bin
+    transmission-gtk
     dropbox # cloud service
     spotify # muzak
     vscode # burn the witch
@@ -165,7 +168,14 @@ in {
     # games #
     #########
 
-    retroarch
+    # zandronum # FIXME
+    twad
+    vkquake
+    slade
+    enyo-doom
+    crispyDoom
+    gzdoom
+    retroarchBare
     brogue
     steam
     exult16
