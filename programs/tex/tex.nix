@@ -4,6 +4,11 @@
   home.packages = with pkgs; [
     (texlive.combine {
       inherit (texlive)
+      diagbox
+      mathabx
+      libertinus-fonts
+      libertinus-otf
+      step
       censor
       firamath
       xits
