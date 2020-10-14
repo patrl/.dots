@@ -72,6 +72,7 @@ in {
     (import ./overlays/lieer.nix )
     (import ./overlays/exult.nix )
     (import ./overlays/twad.nix )
+    (import ./overlays/slade.nix )
     (import "${mozilla-overlay}")
     (import "${emacs-overlay}")
     (import ./overlays/zotero.nix) # TODO this is only necessary temporarily
@@ -168,11 +169,9 @@ in {
     # games #
     #########
 
-    # zandronum # FIXME
     twad
     vkquake
     slade
-    enyo-doom
     crispyDoom
     gzdoom
     retroarchBare
