@@ -41,7 +41,6 @@ let g:nnn#layout = 'vnew'
 nnoremap <silent> <leader>t :NERDTreeToggle<CR>
 
 " Unified color scheme (default: dark)
-" colo dracula
 
 colo gruvbox
 
@@ -61,9 +60,4 @@ function! s:statusline_expr()
 endfunction
 let &statusline = s:statusline_expr()
 
-
-
-
-
-
-
+g:tex_flavor=latex

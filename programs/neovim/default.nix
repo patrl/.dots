@@ -26,7 +26,6 @@ in {
       goyo
       fzfWrapper
       fzf-vim
-      vim # this is the (incorrectly named!) dracula theme
       coc-nvim
       vimtex
       coc-vimtex
