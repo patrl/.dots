@@ -1,6 +1,9 @@
-{ stdenv, fetchFromGitHub, cmake, pkgconfig, wxGTK30-gtk3, gtk3, sfml, fluidsynth, curl, freeimage, ftgl, glew, zip, lua, fmt, mpg123, wrapGAppsHook }:
+{ stdenv, fetchFromGitHub, cmake, pkgconfig, wxGTK30-gtk3,
+gtk3, sfml, fluidsynth, curl, freeimage, ftgl, glew, zip, lua, fmt, mpg123, wrapGAppsHook }:
 
-stdenv.mkDerivation {
+let
+  wxGTK = wxGTK30-gtk3.override { withGtk2 = false; withWebKit = true; };
+in stdenv.mkDerivation {
   name = "slade";
 
   src = fetchFromGitHub {
@@ -12,11 +15,11 @@ stdenv.mkDerivation {
   };
 
   cmakeFlags = [
-    "-DNO_WEBVIEW=ON"
-    "-DwxWidgets_CONFIG_EXECUTABLE=${wxGTK30-gtk3.out}/bin/wx-config"
+    # "-DNO_WEBVIEW=ON"
+    "-DwxWidgets_CONFIG_EXECUTABLE=${wxGTK.out}/bin/wx-config"
   ];
   nativeBuildInputs = [ cmake pkgconfig zip wrapGAppsHook ];
-  buildInputs = [ wxGTK30-gtk3 gtk3 sfml fluidsynth curl freeimage ftgl glew lua fmt mpg123 ];
+  buildInputs = [ wxGTK gtk3 sfml fluidsynth curl freeimage ftgl glew lua fmt mpg123 ];
   enableParallelBuilding = true;
 
   # meta = with stdenv.lib; {
