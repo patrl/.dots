@@ -2,8 +2,13 @@
 
 {
   home.packages = with pkgs; [
+
+    pythonPackages.pygments
+
     (texlive.combine {
       inherit (texlive)
+      lm
+      # lm-math
       diagbox
       mathabx
       libertinus-fonts

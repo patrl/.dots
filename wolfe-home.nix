@@ -132,7 +132,7 @@ in {
     polybar
     zotero
     # zulip # FIXME gstreamer error
-    calibre
+    # calibre # FIXME
     krita
     gparted
     peek
@@ -169,6 +169,7 @@ in {
     # games #
     #########
 
+    pcsx2
     twad
     vkquake
     slade
@@ -178,6 +179,7 @@ in {
     brogue
     steam
     exult16
+    steam-run-native
 
 
 
@@ -213,12 +215,12 @@ in {
   #
 
   programs.beets = {
-    enable = true;
+    enable = false;
     settings  = {
       directory = "/home/patrl/keybase/private/patrl/music";
       library = "/home/patrl/keybase/private/patrl/music/beets/musiclibrary.db";
     };
-  }; # todo get library and directory settings working properly, pointing at keybase
+  }; # FIXME todo get library and directory settings working properly, pointing at keybase
 
 
 

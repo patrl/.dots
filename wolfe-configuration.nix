@@ -27,7 +27,7 @@ in {
   # the following is currently needed for cachix on nixos
   nix.trustedUsers = [ "root" "patrl" ];
 
-  nix.package = pkgs.nixFlakes; # I need this in order to play around with the experimental flakes branch
+  # nix.package = pkgs.nixFlakes; # FIXME I need this in order to play around with the experimental flakes branch
 
 
 
@@ -50,7 +50,7 @@ in {
     # recognise trackpoint on thinkpad x1 extreme gen 2
     trackpoint.device = "TPPS/2 Elan TrackPoint";
     # support for logitech mx ergo
-    logitech = {
+    logitech.wireless = {
       enable = true;
       enableGraphical = true; # TODO this installs solaar, which doesn't currently work
     };
