@@ -70,6 +70,7 @@ in {
     })
 
     (import ./overlays/lieer.nix )
+    (import ./overlays/git-latexdiff.nix )
     (import ./overlays/exult.nix )
     (import ./overlays/twad.nix )
     (import ./overlays/slade.nix )
@@ -112,6 +113,7 @@ in {
     xorg.xprop
     vulkan-tools
     rmapi
+    git-latexdiff
 
     ############
     # gui apps #
@@ -148,7 +150,7 @@ in {
     # N.b. I mostly just use ad-hoc nix-shells
 
     poetry # manage python dependencies (I'm using this with poetry2nix)
-    (agda.withPackages [ agdaPackages.standard-library ])
+    # (agda.withPackages [ agdaPackages.standard-library ]) # FIXME
     coq # coq
     # idris # FIXME
     rustup # rust
