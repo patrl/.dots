@@ -47,14 +47,17 @@ in {
   hardware = {
     enableAllFirmware = true; # generally a good idea on newer hardware
     cpu.intel.updateMicrocode = true;
+    steam-hardware.enable = true;
     # recognise trackpoint on thinkpad x1 extreme gen 2
     trackpoint.device = "TPPS/2 Elan TrackPoint";
     # support for logitech mx ergo
-    logitech.wireless = {
-      enable = true;
-      enableGraphical = true; # TODO this installs solaar, which doesn't currently work
-    };
+    # logitech.wireless = {
+      # enable = true;
+      # enableGraphical = true; # TODO this installs solaar, which doesn't currently work
+    # };
   };
+
+
 
   # fixes a bug with battery reporting (see: https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_X1_Extreme_(Gen_2))
   boot.initrd.availableKernelModules = [ "battery" ];
@@ -116,7 +119,7 @@ in {
   };
 
   # services.xserver.videoDrivers = [ "intel" ];
-  services.xserver.videoDrivers = [ "nvidia" ]; # TODO leading to kernel panics?
+  services.xserver.videoDrivers = [ "nvidia" ];
 
 
 
@@ -169,6 +172,7 @@ in {
   # fonts #
   #########
 
+  # declare some sensible default fonts
   fonts = {
     fontconfig.dpi = 192;
     fonts = with pkgs; [
@@ -214,7 +218,7 @@ in {
     xkbOptions = "eurosign:e";
     libinput = {
       enable = true;
-      accelSpeed= "0.5"; # the trackpad by default is way too insensitive
+      touchpad.accelSpeed= "0.5"; # the trackpad by default is way too insensitive
     };
     windowManager.bspwm = {
       enable = true;
@@ -231,11 +235,14 @@ in {
   };
 
   environment.sessionVariables = {
+    NNN_OPTS = "eE";
     NNN_TRASH= "1"; # nnn trashes files to the desktop Trash
     NNN_TMPFILE = "/tmp/nnn";
     NNN_USE_EDITOR= "1";
+
     PURE_PROMPT_SYMBOL="λ";
     PURE_PROMPT_VICMD_SYMBOL="ν";
+
     QT_SCALE_FACTOR= "2"; # this is primarily to get zoom scaling properly
   };
 
@@ -273,6 +280,9 @@ in {
     hostId = "8cea25c4";
     firewall.enable = true;
   };
+
+  services.openssh.enable = true;
+  programs.mosh.enable = true;
 
 
 
@@ -326,7 +336,7 @@ in {
     description = "Patrick Elliott";
     createHome = true;
     # note that I need to be in the audio group for mopidy
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" ];
     isNormalUser = true;
     uid = 1000;
   };
@@ -340,7 +350,12 @@ in {
   programs.ssh.askPassword = "";
 
 
+  ##################
+  # virtualization #
+  ##################
 
+  virtualisation.docker.enable = true;
+  virtualisation.docker.enableOnBoot = false;
 
   ####################
   # DON'T TOUCH THIS #

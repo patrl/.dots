@@ -2,6 +2,8 @@ self: super:
 {
   git-latexdiff = super.git-latexdiff.overrideAttrs ( old: rec {
     version = "1.6.0";
+    patches = [];
+    postPatch = "";
     src = super.fetchFromGitLab {
       owner = "git-latexdiff";
       repo = "git-latexdiff";

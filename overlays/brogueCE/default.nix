@@ -1,12 +1,9 @@
-{ pkgs, lib, stdenv, fetchurl, fetchFromGitHub, SDL2, SDL2_image, makeDesktopItem }:
-
-# let
-#   stdenv = pkgs.gcc7Stdenv;
-# in
+{ lib, stdenv, fetchurl, fetchFromGitHub, SDL2, SDL2_image, makeDesktopItem }:
 
 stdenv.mkDerivation rec {
   pname = "brogue-ce";
   version = "1.9.3";
+
   hardeningDisable = [ "format" ];
 
   src = fetchFromGitHub {
@@ -46,7 +43,7 @@ stdenv.mkDerivation rec {
     cp -r bin/assets $out/share/brogue/
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "A roguelike game (brogue community edition)";
     homepage = "https://github.com/tmewett/BrogueCE";
     license = licenses.agpl3;

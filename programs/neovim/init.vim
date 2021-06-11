@@ -5,12 +5,57 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 	autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
+" This enables true color support.
+set termguicolors
+
+syntax on
+filetype plugin indent on
+
+set spelllang=en_gb
+
+" system clipboard default
+set clipboard+=unnamedplus
+
+" maps the global leader key to space
+let mapleader="\<SPACE>"
+let maplocalleader=","
+
+" general useful mappings
+" Cycle between windows
+nnoremap <silent> <leader>w<Tab> <C-W>w
+" Maximize current window
+nnoremap <silent> <leader>wm <C-W>o
+" Create vertical split
+nnoremap <silent> <leader>w/ <C-W>v
+" Create horizontal split
+nnoremap <silent> <leader>w- <C-W>s
+" Close current window
+nnoremap <silent> <leader>wd :hide<CR>
+
+"Buffer manipulation
+nnoremap <silent> <leader>bd :bw<CR>
+nnoremap <silent> <leader>bn :bn<CR>
+nnoremap <silent> <leader>bp :bp<CR>
+
+nnoremap <silent> <leader>fs :update<CR>
+" Use CTRL-S for saving, also in Insert mode
+noremap <C-S> :update<CR>
+vnoremap <C-S> <C-C>:update<CR>
+inoremap <C-S> <C-O>:update<CR>
+
+" alignment
+set expandtab
 
 
 call plug#begin()
+
 " ====================================================================
 " General 
 " ====================================================================
+
+Plug 'tpope/vim-sensible'
+
+Plug 'junegunn/vim-easy-align'
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -18,13 +63,24 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+Plug 'junegunn/vim-slash'
+
 " ====================================================================
 " Appearance
 " ====================================================================
 "
 Plug 'yuttie/comfortable-motion.vim'
 "
-
+Plug 'junegunn/seoul256.vim'
+" {{{
+let g:seoul256_srgb = 1
+" }}}
+"
+Plug 'morhetz/gruvbox'
+" {{{
+let g:gruvbox_italic=1
+" }}}
+"
 Plug 'reedes/vim-colors-pencil'
 " {{{
 let g:pencil_terminal_italics = 1
@@ -32,24 +88,120 @@ let g:pencil_terminal_italics = 1
 "
 Plug 'arcticicestudio/nord-vim'
 "
-Plug 'dracula/vim' 
+Plug 'dracula/vim'
 "
+Plug 'vim-airline/vim-airline'
 " {{{
+let g:airline_powerline_fonts=1
+
+let g:airline#extensions#tabline#enabled = 1
+
+ if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
+
+  " unicode symbols
+  let g:airline_left_sep = '»'
+  let g:airline_left_sep = '▶'
+  let g:airline_right_sep = '«'
+  let g:airline_right_sep = '◀'
+  let g:airline_symbols.crypt = '🔒'
+  let g:airline_symbols.linenr = '☰'
+  let g:airline_symbols.linenr = '␊'
+  let g:airline_symbols.linenr = '␤'
+  let g:airline_symbols.linenr = '¶'
+  let g:airline_symbols.maxlinenr = ''
+  let g:airline_symbols.maxlinenr = '㏑'
+  let g:airline_symbols.branch = '⎇'
+  let g:airline_symbols.paste = 'ρ'
+  let g:airline_symbols.paste = 'Þ'
+  let g:airline_symbols.paste = '∥'
+  let g:airline_symbols.spell = 'Ꞩ'
+  let g:airline_symbols.notexists = '∄'
+  let g:airline_symbols.whitespace = 'Ξ'
+
+  " powerline symbols
+  let g:airline_left_sep = ''
+  let g:airline_left_alt_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_right_alt_sep = ''
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.linenr = '☰'
+  let g:airline_symbols.maxlinenr = ''
+
+  " old vim-powerline symbols
+  let g:airline_left_sep = '⮀'
+  let g:airline_left_alt_sep = '⮁'
+  let g:airline_right_sep = '⮂'
+  let g:airline_right_alt_sep = '⮃'
+  let g:airline_symbols.branch = '⭠'
+  let g:airline_symbols.readonly = '⭤'
+  let g:airline_symbols.linenr = '⭡'
+
 
 " }}}
 "
-
-
+Plug 'vim-airline/vim-airline-themes'
 "
+Plug 'reedes/vim-thematic'
+" {{{
+let g:thematic#themes = {
+			\ 'nord' :{'colorscheme': 'nord',
+			\ 	   'background': 'dark',
+			\ 	   'airline-theme': 'nord',
+			\          },
+			\ 'pencil_dark' :{'colorscheme': 'pencil',
+			\                 'background': 'dark',
+			\                 'airline-theme': 'pencil',
+			\                },
+			\ 'pencil_lite' :{'colorscheme': 'pencil',
+			\                 'background': 'light',
+			\                 'airline-theme': 'pencil',
+			\                },
+			\ 'gruv_dark'	:{'colorscheme': 'gruvbox',
+			\		  'background': 'dark',
+			\		  'airline-theme': 'gruvbox',
+			\		  },
+			\ 'gruv_lite'	:{'colorscheme': 'gruvbox',
+			\		  'background': 'light',
+			\		  'airline-theme': 'gruvbox',
+			\		  },
+			\ 'dracula'	:{'colorscheme': 'dracula',
+			\		  'background': 'dark',
+			\		  'airline-theme': 'dracula',
+			\		  },
+			\ 'seoul_lite'	:{'colorscheme': 'seoul256-light',
+			\		  'background': 'light',
+			\		  'airline-theme': 'zenburn',
+			\		  },
+			\ 'seoul_dark'	:{'colorscheme': 'seoul256',
+			\		  'background': 'dark',
+			\		  'airline-theme': 'zenburn',
+			\		  },
+			\ }
+"
+let g:thematic#theme_name = 'pencil_lite'
+" }}}
+"
+Plug 'ryanoasis/vim-devicons'
+
+" ====================================================================
+" Startup
+" ====================================================================
+Plug 'mhinz/vim-startify'
 " {{{
 nnoremap <silent> <leader>bh :Startify<CR>
 " }}}
+
+
 " ====================================================================
 " Language 
 " ====================================================================
+" Nix
+Plug 'LnL7/vim-nix', { 'for': 'nix' }
 " Web
 Plug 'othree/html5.vim', { 'for': 'html' }
-"" Haskell
 
 " ====================================================================
 " Completion 
@@ -60,26 +212,27 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "let g:deoplete#sources = {}
 "let g:deoplete#sources._=['omni', 'ultisnips']
 " }}}
+Plug 'ervandew/supertab'
 " {{{
 autocmd FileType tex let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 " }}}
+Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<C-j>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+Plug 'honza/vim-snippets'
 
 " ====================================================================
 " Utilities 
 " ====================================================================
+Plug 'tpope/vim-fugitive'
 " {{{
 nnoremap <silent> <leader>gs :Gstatus<CR>
 " }}}
+Plug 'neomake/neomake'
 " {{{
 " Runs neomake everywhere
 "autocmd! BufWritePost * Neomake
 " }}}
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-"Plug '/run/current-system/sw/bin/fzf'
-"Plug '/home/patrl/.zplugin/plugins/junegunn---fzf-bin'
-"Plug '/home/patrl/.zplugin/plugins/junegunn---fzf'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 " {{{
@@ -90,13 +243,24 @@ nnoremap <silent> <Leader>ll :Lines<CR>
 nnoremap <silent> <Leader>lb :BLines<CR>
 "let g:fzf_nvim_statusline = 0
 " }}}
+Plug 'tpope/vim-surround'
+"
+Plug 'scrooloose/nerdtree'
+" {{{
 map <C-n> :NERDTreeToggle<CR>
+" }}}
+"
+Plug 'tpope/vim-commentary'
 "
 " ====================================================================
 " Prose 
 " ====================================================================
+Plug 'junegunn/goyo.vim'
+" {{{
 nnoremap <silent> <leader>Tg :Goyo<cr>
+" }}}
 Plug 'junegunn/limelight.vim'
+" {{{
 nnoremap <silent> <leader>Tl :Limelight!!<cr>
 " }}}
 "
@@ -194,11 +358,11 @@ function! VimtexPencil()
 endfunction
 
 "autocmd FileType tex call VimtexDeoplete()
-autocmd FileType tex call VimtexPencil()						
+autocmd FileType tex call VimtexPencil()
 "
 Plug 'lervag/vimtex'
 
-let g:vimtex_view_general_viewer = 'cmd.exe /C start'
+let g:vimtex_view_method = 'zathura'
 let g:vimtex_complete_close_braces = 1
 let g:vimtex_complete_recursive_bib = 1
 let g:tex_flavor = "latex"

@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  package = pkgs.gitAndTools.gitFull;
+  package = pkgs.gitAndTools.git; # FIXME git full seems to be broken
   enable = true;
   userName = "Patrick Elliott";
   userEmail = "patrick.d.elliott@gmail.com";
@@ -16,6 +16,5 @@
     rebase = { autostash = "true"; };
     pull = { rebase = "true"; };
     color = { ui = "true"; };
-    include = { path = "git-hub.inc"; };
   };
 }

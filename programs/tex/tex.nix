@@ -7,6 +7,10 @@
 
     (texlive.combine {
       inherit (texlive)
+      fontawesome5
+      awesomebox
+      xcolor-solarized
+      luatodonotes
       lm
       # lm-math
       diagbox

@@ -4,14 +4,15 @@
 
   nixpkgs.config = {
     allowUnfree = true;
+    allowBroken = true;
   }; # software doesn't grow on tree
 
 
   home.sessionVariables = {
     # use emacs as my default editor
-    EDITOR = "${config.programs.neovim.package}/bin/nvim";
+    EDITOR = "${pkgs.neovim}/bin/nvim";
     # read man pages in neovim (hot!)
-    MANPAGER = "${config.programs.neovim.package}/bin/nvim -c 'set ft=man' -";
+    MANPAGER = "${pkgs.neovim}/bin/nvim -c 'set ft=man' -";
     WEECHAT_HOME = ''${config.xdg.configHome}/weechat'';
   };
 
@@ -40,8 +41,9 @@
     # cli tools #
     #############
 
+    neovim
     stow # symlink manager
-    gitAndTools.git-hub # github cli. I alias git to this.
+    gh # official github cli. I alias git to this.
     gitAndTools.git-ignore # auto fetch language template
     exa # improved ls in rust
     ripgrep # grep with batteries
@@ -57,17 +59,15 @@
     gtypist
     rclone
     rsync
-    magic-wormhole
     # ssb-patchwork # FIXME
     bc # cli calc
     figlet
     neofetch
     file # need this for the nnn plugin nuke
     fd # supercharged find
-    cmus
-    asciinema
+    cmus # cli audio player
     pandoc
-    haskellPackages.pandoc-citeproc
+    # haskellPackages.pandoc-citeproc # FIXME
     pdftk
     graphviz
     imagemagick
@@ -103,7 +103,7 @@
   # editors #
   ###########
 
-  programs.neovim = ( import programs/neovim/default.nix { inherit pkgs; });
+  # programs.neovim = ( import programs/neovim/default.nix { inherit pkgs; });
 
   programs.emacs.enable = true;
 
@@ -145,7 +145,7 @@
   programs.starship.enable = true;
 
   programs.starship.settings = {
-    character.symbol = "λ";
+    character.success_symbol = "λ";
     add_newline = "false";
   };
 

@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, pkgconfig, SDL2, libogg, libvorbis, zlib, unzip }:
+{ lib, stdenv, fetchurl, pkgconfig, SDL2, libogg, libvorbis, zlib, unzip }:
 
 let
 
@@ -39,12 +39,12 @@ stdenv.mkDerivation rec {
       chmod 644 $out/share/exult/*.flx
     ''; # */
 
-  meta = {
+  meta = with lib; {
     homepage = "http://exult.sourceforge.net/";
     description = "A reimplementation of the Ultima VII game engine";
-    maintainers = [ stdenv.lib.maintainers.eelco ];
-    platforms = stdenv.lib.platforms.unix;
-    hydraPlatforms = stdenv.lib.platforms.linux; # darwin times out
-    license = stdenv.lib.licenses.gpl2Plus;
+    maintainers = [ maintainers.eelco ];
+    platforms = platforms.unix;
+    hydraPlatforms = platforms.linux; # darwin times out
+    license = licenses.gpl2Plus;
   };
 }

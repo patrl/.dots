@@ -10,7 +10,7 @@
   envExtra = ( builtins.readFile ./envExtra.zsh );
   shellAliases = {
     g = "git";
-    gcl = "git hub clone"; # use the triangular workflow by default
+    gcl = "gh repo clone"; # use the triangular workflow by default
     pp = "prettyping";
     l = "exa";
     la = "exa -a";
@@ -18,7 +18,7 @@
     ll = "exa -l";
     lla = "exa -la";
     llt = "exa -T";
-    llta = "exta -Ta";
+    llta = "exa -Ta";
     llfu = "exa -bghHliS --git";
     prev = ''fzf --preview "bat --color always {}"'';
    };

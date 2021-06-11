@@ -1,9 +1,11 @@
 { config, pkgs, ... }:
 
 let
+  # latest firefox
   mozilla-overlay = fetchTarball {
       url = https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz;
   };
+  # latest emacs
   emacs-overlay = fetchTarball {
       url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
     };
@@ -11,7 +13,7 @@ in {
 
   imports = [
     ./programs/tex/tex.nix # latex stuff
-    ./common.nix
+    ./common.nix # stuff I want on every machine
   ];
   ###########
   # general #
@@ -22,6 +24,7 @@ in {
     EDITOR = "${config.programs.emacs.package}/bin/emacsclient -c";
     VISUAL = "${config.programs.emacs.package}/bin/emacsclient -c";
     MAILDIR = "$HOME/.mail";
+    LEDGER_FILE="$HOME/finance/all-years.journal";
   };
 
   home.file = {
@@ -37,6 +40,9 @@ in {
     };
     ".config/polybar/config" = {
       source = programs/polybar/polybar.conf;
+    };
+    ".config/nvim/init.vim" = {
+      source = programs/neovim/init.vim;
     };
     ".agda/defaults" = {
       source = programs/agda/defaults;
@@ -59,24 +65,43 @@ in {
   };
 
   nixpkgs.overlays = [
+
+  (self: super: {
+     neovim = super.neovim.override {
+       viAlias = true;
+       vimAlias = true;
+     };
+   })
+
     (self: super: {
       weechat = super.weechat.override {
         configure = { ... }: {
           scripts = with self.weechatScripts; [
             wee-slack
+            weechat-matrix
           ];
         };
       };
     })
 
-    (import ./overlays/lieer.nix )
-    (import ./overlays/git-latexdiff.nix )
+    # adds support for nerd font icons to nnn
+    (self: super: {
+      nnn = super.nnn.override {
+        withNerdIcons = true;
+      };
+    })
+
+
+    # (import ./overlays/lieer.nix )
+    # (import ./overlays/git-latexdiff.nix )
     (import ./overlays/exult.nix )
     (import ./overlays/twad.nix )
-    (import ./overlays/slade.nix )
+    (import ./overlays/brogueCE.nix )
+    (import ./overlays/pico-8.nix )
+    (import ./overlays/slade.nix ) # FIXME
     (import "${mozilla-overlay}")
     (import "${emacs-overlay}")
-    (import ./overlays/zotero.nix) # TODO this is only necessary temporarily
+    # (import ./overlays/zotero.nix) # TODO this is only necessary temporarily
     ];
 
     # nixpkgs.config = {
@@ -104,44 +129,60 @@ in {
     #############
 
     # steam-run-native # FIXME gstreamer error
+    ffmpeg # video conversion and manipulation
+    du-dust # rust utility to view disk space
+    youtube-dl # cli to download audio/video from youtube
     sqlite # emacs seems to require the sqlite3 binary these days
-    niv
+    niv # dependency management for nix
     powertop # change power management settings
     glxinfo # graphics settings
-    feh
+    feh # simple image viewer
     maim # screenshot tool
-    xorg.xprop
-    vulkan-tools
-    rmapi
-    git-latexdiff
+    xorg.xprop # utility for X info
+    vulkan-tools # vulkan tools
+    rmapi # remarkable
+    # git-latexdiff
+    docker
+    borgbackup
+    gnumake # provides make
+    inotify-tools # provides filewatch
+    qrencode # encode as a QR code
+    paperkey # backup gpg key
+    entr
 
     ############
     # gui apps #
     ############
 
-    tor-browser-bundle-bin
-    transmission-gtk
-    dropbox # cloud service
+    # tor-browser-bundle-bin # FIXME totally anonymous web browsing
+    transmission-gtk # torrenting
+    dropbox # cloud file storage
     spotify # muzak
-    vscode # burn the witch
-    discord # FIXME
-    zoom-us
-    slack
-    zotero
-    rofi-pass
-    rofi-systemd
-    pavucontrol
-    polybar
-    zotero
-    # zulip # FIXME gstreamer error
-    # calibre # FIXME
-    krita
-    gparted
-    peek
-    aseprite
-    rx
-    tiled
-    xournalpp
+    vscode # slick editor
+    discord # chat
+    zoom-us # zoom
+    slack # slack
+    zotero # bibliography management
+    rofi-pass # pass ui
+    rofi-systemd # systemd ui
+    pavucontrol # audio settings
+    polybar # status bar
+    zotero # bibliography management
+    zulip # foss slack
+    krita # image editing
+    gparted # partition editing
+    peek # screen cast
+    aseprite # sprite editing
+    rx # minimalist pixel art editor
+    tiled # map editor
+    xournalpp # pdf editor
+
+    hledger
+    hledger-ui
+    hledger-web
+    # haskellPackages.hledger-flow # FIXME
+
+    xchm
 
     #############
     # languages #
@@ -149,6 +190,7 @@ in {
 
     # N.b. I mostly just use ad-hoc nix-shells
 
+    lua5_4
     poetry # manage python dependencies (I'm using this with poetry2nix)
     # (agda.withPackages [ agdaPackages.standard-library ]) # FIXME
     coq # coq
@@ -164,6 +206,7 @@ in {
     #########
 
     cascadia-code
+    lmodern # stops lualatex from throwing bugs
 
 
 
@@ -178,10 +221,15 @@ in {
     crispyDoom
     gzdoom
     retroarchBare
-    brogue
-    steam
+    # brogue
+    (pkgs.steam.override { extraPkgs = pkgs: [ pipewire.lib ]; })
+    brogue-ce
     exult16
     steam-run-native
+    (pkgs.dwarf-fortress-packages.dwarf-fortress-full.override {
+     theme = "meph";
+    })
+    pico-8
 
 
 
@@ -189,7 +237,6 @@ in {
     gsettings-desktop-schemas # maybe necessary for zotero
 
   ];
-
 
 
   ###########
@@ -229,15 +276,17 @@ in {
   ##############
   # appearance #
   ##############
-  services.redshift = {
+
+  services.gammastep = {
     enable = true;
+    tray = true;
     provider = "manual";
     latitude = "42.4";
     longitude = "71.1";
-    tray = true;
-    brightness = {
-      day = "0.5";
-      night = "0.5";
+    settings = {
+      general = {
+        brightness = 0.5;
+      };
     };
   };
 
@@ -288,7 +337,7 @@ in {
 
   programs.firefox = {
     enable = true;
-    package = pkgs.latest.firefox-nightly-bin;
+    package = pkgs.latest.firefox-beta-bin;
   };
 
   programs.chromium.enable = true;
